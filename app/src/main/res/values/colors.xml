@@ -2,4 +2,21 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="button_text_color">#F4F4F4</color>
+    <color name="main_theme_color">#375A64</color>
+    <color name="paragraph">#60655C</color>
+    <color name="heading">#363A33</color>
+    <color name="button_text_color_2">#B6B8B6</color>
+    <color name="text_color">#1E1E1E</color>
+    <color name="error">#E25839</color>
+    <color name="editText_text_color">#91958E</color>
+    <color name="exp">#D01010</color>
+    <color name="cardview">#C3B8A5</color>
+    <color name="blue">#127FD3</color>
+    <color name="green">#93C19A</color>
+
+
+
+
+
 </resources>

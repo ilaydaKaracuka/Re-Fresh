@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "450894699062",
+    "project_id": "re-fresh-1b81d",
+    "storage_bucket": "re-fresh-1b81d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450894699062:android:709453278cc3e6ff705697",
+        "android_client_info": {
+          "package_name": "com.example.re_fresh"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH0hyyutC6xDptGbHAPtRi7xBy7o-Sbug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

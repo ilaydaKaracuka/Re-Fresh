@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@android:color/white"
-    android:gravity="center_horizontal">
+    android:background="@android:color/white">
 
+    <!-- Logo -->
     <ImageView
         android:id="@+id/logoImage"
         android:layout_width="wrap_content"
         android:layout_height="43dp"
         android:layout_marginTop="44dp"
         android:contentDescription="Logo"
-        android:src="@drawable/refresh" />
+        android:src="@drawable/refresh"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Onboarding görseli -->
     <ImageView
         android:id="@+id/onboardingImage"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="Onboarding Image"
         android:src="@drawable/onboarding_1"
-        android:contentDescription="Onboarding Image" />
+        app:layout_constraintTop_toBottomOf="@id/logoImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintBottom_toTopOf="@id/titleText" />
 
+    <!-- Başlık -->
     <TextView
         android:id="@+id/titleText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Son kullanma tarihlerini kaçırma!"
         android:textSize="32sp"
@@ -34,39 +43,55 @@
         android:textColor="@color/heading"
         android:fontFamily="@font/poppins_bold"
         android:gravity="center"
+        android:layout_marginTop="8dp"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="4dp" />
+        app:layout_constraintTop_toBottomOf="@id/onboardingImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Açıklama -->
     <TextView
         android:id="@+id/descriptionText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Ürünlerini ekleyerek son kullanma\ntarihlerini takip et."
         android:textSize="15sp"
         android:textColor="@color/paragraph"
         android:fontFamily="@font/poppins_regular"
         android:gravity="center"
+        android:layout_marginTop="8dp"
         android:layout_marginHorizontal="32dp"
-        android:layout_marginBottom="16dp" />
+        app:layout_constraintTop_toBottomOf="@id/titleText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Pagination -->
     <ImageView
         android:id="@+id/paginationImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/pagination_1"
-        android:layout_marginTop="12dp"
         android:contentDescription="Pagination"
-        android:layout_marginBottom="12dp" />
+        app:layout_constraintTop_toBottomOf="@id/descriptionText"
+        app:layout_constraintBottom_toTopOf="@id/buttonContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Butonlar -->
     <LinearLayout
         android:id="@+id/buttonContainer"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_marginBottom="32dp"
         android:paddingHorizontal="24dp"
-        android:weightSum="2">
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/skipButton"
@@ -95,4 +120,4 @@
             android:elevation="0dp" />
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

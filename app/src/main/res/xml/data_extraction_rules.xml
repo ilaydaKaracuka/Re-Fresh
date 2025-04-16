@@ -1,19 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-   Sample data extraction rules file; uncomment and customize as necessary.
-   See https://developer.android.com/about/versions/12/backup-restore#xml-changes
-   for details.
--->
+<?xml version="1.0" encoding="utf-8"?>
 <data-extraction-rules>
     <cloud-backup>
-        <!-- TODO: Use <include> and <exclude> to control what is backed up.
-        <include .../>
-        <exclude .../>
+        <!-- Örnek olarak tüm dosyaları dahil etmek için şu şekilde yazabilirsin:
+        <include domain="file" path="."/>
+        -->
+
+        <!-- Hiçbir dosyayı dahil etmemek için:
+        <exclude domain="file" path="."/>
+        -->
+
+        <!-- Ya da sadece belirli dosyaları hariç tutmak için örnek:
+        <exclude domain="sharedpref" path="dont_backup.xml"/>
         -->
     </cloud-backup>
-    <!--
+
+    <!-- Cihaz transferi sırasında aynı kurallar uygulanabilir:
     <device-transfer>
-        <include .../>
-        <exclude .../>
+        <include domain="file" path="."/>
     </device-transfer>
     -->
 </data-extraction-rules>

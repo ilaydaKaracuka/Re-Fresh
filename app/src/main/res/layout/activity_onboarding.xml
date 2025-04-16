@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="43dp"
         android:layout_marginTop="44dp"
-        android:layout_marginBottom="12dp"
         android:contentDescription="Logo"
         android:src="@drawable/refresh" />
 

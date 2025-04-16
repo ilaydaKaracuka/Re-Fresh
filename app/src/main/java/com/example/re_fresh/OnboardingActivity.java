@@ -2,7 +2,7 @@ package com.example.re_fresh;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,18 +38,43 @@ public class OnboardingActivity extends AppCompatActivity {
             currentPage++;
             updateContent();
         });
+
+        // İlk sayfa içeriğini yükle
+        updateContent();
     }
 
     private void updateContent() {
+        ViewGroup.LayoutParams layoutParams = onboardingImage.getLayoutParams();
+
         switch (currentPage) {
+            case 0:
+                onboardingImage.setImageResource(R.drawable.onboarding_1);
+                layoutParams.width = 850;
+                layoutParams.height = 850;
+                onboardingImage.setLayoutParams(layoutParams);
+
+                pagination.setImageResource(R.drawable.pagination_1);
+                titleText.setText("Ürünlerini\nkolayca ekle!");
+                descText.setText("Ürünlerinin son kullanma tarihini \nkaydet, düzenli takip et.");
+                nextButton.setText("İleri");
+                break;
             case 1:
                 onboardingImage.setImageResource(R.drawable.onboarding_2);
+                layoutParams.width = 950;
+                layoutParams.height = 950;
+                onboardingImage.setLayoutParams(layoutParams);
+
                 pagination.setImageResource(R.drawable.pagination_2);
                 titleText.setText("Zamanında\nbildirim al!");
                 descText.setText("Tarihi yaklaşan ürünler için \nhatırlatma al, israfı önle.");
+                nextButton.setText("İleri");
                 break;
             case 2:
                 onboardingImage.setImageResource(R.drawable.onboarding_3);
+                layoutParams.width = 1050;
+                layoutParams.height = 1050;
+                onboardingImage.setLayoutParams(layoutParams);
+
                 pagination.setImageResource(R.drawable.pagination_3);
                 titleText.setText("Daha Bilinçli Tüketim!");
                 descText.setText("Tasarruf et, doğaya katkı sağla.");

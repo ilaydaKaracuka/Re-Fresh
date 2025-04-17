@@ -2,13 +2,11 @@ package com.example.re_fresh;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams;
 
 public class OnboardingActivity extends AppCompatActivity {
 
@@ -40,10 +38,6 @@ public class OnboardingActivity extends AppCompatActivity {
     }
 
     private void updateContent() {
-        // Varsayılan marginler
-        setMargins(onboardingImage, 24, 0);
-        setMargins(titleText, 16, 0);
-
         switch (currentPage) {
             case 0:
                 onboardingImage.setImageResource(R.drawable.onboarding_1);
@@ -65,37 +59,14 @@ public class OnboardingActivity extends AppCompatActivity {
                 onboardingImage.setImageResource(R.drawable.onboarding_3);
                 pagination.setImageResource(R.drawable.pagination_3);
                 titleText.setText("Daha Bilinçli Tüketim!");
-                descText.setText("Tasarruf et, doğaya katkı sağla.");
+                descText.setText("Doğa için tasarruf et. Küçük adımlar, sürdürülebilir bir dünya yaratır.");
                 nextButton.setText("Başla");
-
-                // onboarding_3 için biraz yukarı taşı
-                setMargins(onboardingImage, 8, 0);
-                setMargins(titleText, 8, 0);
                 break;
 
             default:
                 goToWelcome();
                 break;
         }
-    }
-
-    private void setMargins(TextView view, int top, int bottom) {
-        ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) view.getLayoutParams();
-        params.topMargin = dpToPx(top);
-        params.bottomMargin = dpToPx(bottom);
-        view.setLayoutParams(params);
-    }
-
-    private void setMargins(ImageView view, int top, int bottom) {
-        ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) view.getLayoutParams();
-        params.topMargin = dpToPx(top);
-        params.bottomMargin = dpToPx(bottom);
-        view.setLayoutParams(params);
-    }
-
-    private int dpToPx(int dp) {
-        float density = getResources().getDisplayMetrics().density;
-        return Math.round(dp * density);
     }
 
     private void goToWelcome() {

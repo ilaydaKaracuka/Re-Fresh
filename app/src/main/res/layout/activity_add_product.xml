@@ -4,29 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:background="@color/white"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-
+    tools:context=".AddProductActivity">
     <!-- Bottom Navigation (CardView içinde) -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/bottom_nav_container_main_activity"
+        android:id="@+id/bottom_nav_container_add_product_activity"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardElevation="8dp"
-        android:layout_marginBottom="-11dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation_main_activity"
+            android:id="@+id/bottom_navigation_add_product_activity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             app:itemActiveIndicatorStyle="@android:color/transparent"
+            android:layout_marginBottom="-11dp"
             app:itemIconSize="52dp"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_nav_menu"

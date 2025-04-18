@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:title="Ana Sayfa"
+        android:icon="@mipmap/menu_main"
+        />
+
+    <item
+        android:id="@+id/nav_add"
+        android:title="Ekle"
+        android:icon="@mipmap/menu_add"
+        />
+
+    <item
+        android:id="@+id/nav_profile"
+        android:title="Profil"
+        android:icon="@mipmap/menu_profile"
+        />
+</menu>

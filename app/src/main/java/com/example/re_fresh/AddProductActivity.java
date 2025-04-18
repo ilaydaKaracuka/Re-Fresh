@@ -10,13 +10,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class AddProductActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_add_product);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -24,11 +24,12 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_main_activity);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_add_product_activity);
         bottomNavigationView.setItemRippleColor(null);
         bottomNavigationView.setItemBackground(null);
         bottomNavigationView.setItemIconTintList(null);
-        BottomNavHelper.setup(this, bottomNavigationView, R.id.nav_home);
+        BottomNavHelper.setup(this, bottomNavigationView, R.id.nav_add);
+
         bottomNavigationView.getMenu().setGroupCheckable(0, true, false);
         for (int i = 0; i < bottomNavigationView.getMenu().size(); i++) {
             bottomNavigationView.getMenu().getItem(i).setChecked(false);

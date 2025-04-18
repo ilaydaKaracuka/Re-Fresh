@@ -60,7 +60,7 @@ public class OnboardingActivity extends AppCompatActivity {
                 pagination.setImageResource(R.drawable.pagination_3);
                 titleText.setText("Daha Bilinçli Tüketim!");
                 descText.setText("Doğa için tasarruf et. Küçük adımlar, sürdürülebilir bir dünya yaratır.");
-                nextButton.setText("Başla");
+                nextButton.setText("İleri");
                 break;
 
             default:

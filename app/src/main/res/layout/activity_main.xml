@@ -13,10 +13,9 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/bottom_nav_container_main_activity"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="90dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardElevation="8dp"
-        android:layout_marginBottom="-11dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">

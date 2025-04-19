@@ -3,13 +3,84 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="118dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/refresh"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Bottom Navigation (CardView içinde) -->
+    <!-- Arama Kutusu -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/searchBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="35dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@android:color/black"
+        app:strokeWidth="1dp"
+        app:layout_constraintTop_toBottomOf="@id/logoImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:padding="12dp"
+            android:background="@drawable/edittext_rounded_stroke">
+
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ürün Ara"
+                android:textColor="@color/editText_text_color"
+                android:textColorHint="@color/editText_text_color"
+                android:textSize="18sp"
+                android:layout_marginLeft="12dp"
+                android:background="@android:color/transparent"
+                android:paddingEnd="40dp"
+                android:inputType="text" />
+
+            <ImageView
+                android:id="@+id/searchIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/search_icon" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/productRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="26dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/searchBox"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav_container_main_activity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_product_card" />
+
+    <!-- Bottom Navigation -->
     <androidx.cardview.widget.CardView
         android:id="@+id/bottom_nav_container_main_activity"
         android:layout_width="match_parent"
@@ -25,12 +96,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            app:itemActiveIndicatorStyle="@android:color/transparent"
             app:itemIconSize="52dp"
-
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_nav_menu"
-            app:itemBackground="@drawable/bottom_nav_item_background"
-            />
+            app:itemBackground="@drawable/bottom_nav_item_background" />
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

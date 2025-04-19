@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="150dp"
+    android:layout_height="202dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="15dp"
+    app:strokeColor="@android:color/black"
+    app:strokeWidth="2dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/cardview">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/cardview_border"
+        android:divider="@android:color/transparent"
+        android:showDividers="middle"
+        android:dividerPadding="4dp">
+
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="150dp"
+            android:layout_height="134dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/product_example"
+            android:background="@drawable/rounded_image_bg"
+             />
+
+        <TextView
+            android:id="@+id/productName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SüT"
+            android:textSize="13sp"
+            android:textColor="@android:color/black"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:divider="@android:color/transparent"
+            android:showDividers="middle"
+            android:dividerPadding="4dp">
+
+            <TextView
+                android:id="@+id/productCategory"
+                android:layout_width="60dp"
+                android:layout_height="23dp"
+                android:text="GIDA"
+                android:background="@drawable/rounded_box_black_border"
+                android:textColor="@android:color/black"
+                android:textSize="10sp"
+                android:fontFamily="@font/poppins_bold"
+                android:padding="4dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/productDayLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="23dp"
+                android:text="22 GÜN"
+                android:background="@drawable/rounded_box_red"
+                android:textColor="@android:color/black"
+                android:textSize="10sp"
+                android:fontFamily="@font/poppins_bold"
+                android:padding="4dp"
+                android:gravity="center"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

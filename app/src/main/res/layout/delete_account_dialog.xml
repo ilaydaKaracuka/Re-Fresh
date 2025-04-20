@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/logout_border"
+    android:layout_gravity="center"
+    android:clipToPadding="false">
+
+    <!-- Başlık -->
+    <TextView
+        android:id="@+id/logoutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hesabını Kalıcı Olarak Sil"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:fontFamily="@font/poppins_bold" />
+
+    <!-- Açıklama -->
+    <TextView
+        android:id="@+id/logoutMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Re-Fresh hesabını silmek istediğinden \nemin misin?  Bu işlem tüm içeriklerini\nkalıcı olarak silecektir."
+        android:textColor="@android:color/black"
+        android:textSize="19sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginTop="12dp"
+        android:layout_gravity="center_horizontal" />
+
+    <!-- Butonlar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="12dp"
+        android:weightSum="2">
+
+        <!-- İptal Butonu -->
+        <Button
+            android:id="@+id/btn_delete_account_cancel"
+            android:layout_width="148dp"
+            android:layout_height="52dp"
+            android:text="İptal"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            android:fontFamily="@font/poppins_bold"
+            android:backgroundTint="@color/blue"
+            android:layout_marginEnd="58dp"
+            app:cornerRadius="12dp" />
+
+        <!-- Hesabı Sil Butonu -->
+        <Button
+            android:id="@+id/btnDeleteAccount"
+            android:layout_width="148dp"
+            android:layout_height="52dp"
+            android:text="Hesabı Sil"
+            app:cornerRadius="12dp"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            android:fontFamily="@font/poppins_bold"
+            android:backgroundTint="@color/exp"
+            android:layout_marginStart="8dp" />
+
+    </LinearLayout>
+</LinearLayout>

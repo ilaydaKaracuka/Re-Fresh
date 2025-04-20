@@ -2,6 +2,8 @@ package com.example.re_fresh;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -45,6 +47,7 @@ public class OnboardingActivity extends AppCompatActivity {
                 titleText.setText("Ürünlerini\nkolayca ekle!");
                 descText.setText("Ürünlerinin son kullanma tarihini \nkaydet, düzenli takip et.");
                 nextButton.setText("İleri");
+                skipButton.setVisibility(View.VISIBLE);
                 break;
 
             case 1:
@@ -53,6 +56,7 @@ public class OnboardingActivity extends AppCompatActivity {
                 titleText.setText("Zamanında\nbildirim al!");
                 descText.setText("Tarihi yaklaşan ürünler için \nhatırlatma al, israfı önle.");
                 nextButton.setText("İleri");
+                skipButton.setVisibility(View.VISIBLE);
                 break;
 
             case 2:
@@ -61,6 +65,13 @@ public class OnboardingActivity extends AppCompatActivity {
                 titleText.setText("Daha Bilinçli Tüketim!");
                 descText.setText("Doğa için tasarruf et. Küçük adımlar, sürdürülebilir bir dünya yaratır.");
                 nextButton.setText("İleri");
+                skipButton.setVisibility(View.GONE);
+
+                // nextButton boyutunu ayarla: height = 52dp, width = 335dp
+                ViewGroup.LayoutParams params = nextButton.getLayoutParams();
+                float scale = getResources().getDisplayMetrics().density;
+                params.width = (int) (335 * scale);    // 335dp
+                nextButton.setLayoutParams(params);
                 break;
 
             default:

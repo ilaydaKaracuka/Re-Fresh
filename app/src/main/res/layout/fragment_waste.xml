@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:padding="6dp">
+
+        <!-- Başlık -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kategori"
+            android:textSize="22sp"
+            android:textColor="@android:color/black"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- GIDA -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="14dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/meal_icon"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Gıda" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gıda"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/poppins_regular" />
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:text="0"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:background="@drawable/count_box_background" />
+        </LinearLayout>
+
+        <!-- İÇECEK -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="14dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/beverage_icon"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="İçecek" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="İçecek"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/poppins_regular" />
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:text="0"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:background="@drawable/count_box_background" />
+        </LinearLayout>
+
+        <!-- İLAÇ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="14dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/medicine_icon"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="İlaç" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="İlaç"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/poppins_regular" />
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:text="4"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:background="@drawable/count_box_background" />
+        </LinearLayout>
+
+        <!-- KOZMETİK -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="14dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/cosmetic_icon"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Kozmetik" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kozmetik"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/poppins_regular" />
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:background="@drawable/count_box_background" />
+        </LinearLayout>
+
+        <!-- TEMİZLİK -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="14dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/cleaning_icon"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Temizlik" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Temizlik"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/poppins_regular" />
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:text="0"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:background="@drawable/count_box_background" />
+        </LinearLayout>
+
+        <!-- DİĞER -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="6dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/more_icon"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Diğer" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Diğer"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/poppins_regular" />
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:background="@drawable/count_box_background" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

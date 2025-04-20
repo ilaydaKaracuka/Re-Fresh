@@ -7,16 +7,120 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
+    <!-- Kullanıcı Fotoğrafı -->
+    <ImageView
+        android:id="@+id/image_user"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="34dp"
+        android:src="@drawable/user_photo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+       />
 
+    <!-- Kullanıcı Adı -->
+    <TextView
+        android:id="@+id/text_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Berna Batı"
+        android:textSize="24sp"
+        android:textColor="@color/heading"
+        android:fontFamily="@font/poppins_bold"
+        app:layout_constraintTop_toBottomOf="@id/image_user"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
 
-    <!-- Bottom Navigation (CardView içinde) -->
+    <!-- İsraf Bilgisi Butonu -->
+    <LinearLayout
+        android:id="@+id/btn_waste_fragment"
+        android:layout_width="166dp"
+        android:layout_height="48dp"
+        android:orientation="vertical"
+        android:background="@drawable/profile_button_background"
+        android:gravity="center"
+        android:paddingHorizontal="12dp"
+        app:layout_constraintTop_toBottomOf="@id/text_user_name"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="İsraf Bilgisi"
+            android:layout_marginTop="8dp"
+
+            android:textSize="15sp"
+            android:textColor="@color/heading"
+            android:fontFamily="@font/poppins_regular" />
+
+        <ImageView
+            android:layout_width="14.94dp"
+            android:layout_height="18.38dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="5dp"
+
+            android:src="@drawable/down_vector" />
+    </LinearLayout>
+
+    <!-- Ayarlar Butonu -->
+    <LinearLayout
+        android:id="@+id/btn_settings_fragment"
+        android:layout_width="166dp"
+        android:layout_height="48dp"
+        android:orientation="vertical"
+        android:background="@drawable/profile_button_background"
+        android:gravity="center"
+        android:paddingHorizontal="12dp"
+        app:layout_constraintTop_toTopOf="@id/btn_waste_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ayarlar"
+            android:layout_marginTop="8dp"
+            android:textSize="15sp"
+            android:textColor="@color/heading"
+            android:fontFamily="@font/poppins_regular" />
+
+        <ImageView
+            android:layout_width="14.94dp"
+            android:layout_height="18.38dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="5dp"
+
+            android:src="@drawable/down_vector"
+             />
+    </LinearLayout>
+
+    <!-- İçerik Kutusu (Fragment Alanı) -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="419dp"
+        android:layout_marginTop="126dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="100dp"
+        android:background="@android:color/white"
+        android:foreground="@drawable/fragment_border"
+        app:layout_constraintTop_toBottomOf="@id/btn_waste_fragment"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav_container_profile_activity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Alt Navigasyon -->
     <androidx.cardview.widget.CardView
         android:id="@+id/bottom_nav_container_profile_activity"
         android:layout_width="match_parent"
         android:layout_height="82dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardElevation="8dp"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -28,11 +132,9 @@
             android:background="@android:color/transparent"
             app:itemActiveIndicatorStyle="@android:color/transparent"
             app:itemIconSize="52dp"
-
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_nav_menu"
-            app:itemBackground="@drawable/bottom_nav_item_background"
-            />
+            app:itemBackground="@drawable/bottom_nav_item_background" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

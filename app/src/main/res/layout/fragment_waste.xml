@@ -9,7 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginLeft="16dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:padding="6dp">
 
         <!-- Başlık -->
@@ -17,41 +19,44 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kategori"
-            android:textSize="22sp"
+            android:textSize="24sp"
             android:textColor="@android:color/black"
             android:fontFamily="@font/poppins_bold"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="8dp" />
+
+        <!-- Kategori Satırları -->
 
         <!-- GIDA -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="14dp">
+            android:layout_marginBottom="18dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:src="@drawable/meal_icon"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="Gıda" />
+                android:contentDescription="Gıda"
+                android:layout_marginEnd="8dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Gıda"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:textColor="@android:color/black"
                 android:fontFamily="@font/poppins_regular" />
 
             <TextView
-                android:layout_width="35dp"
-                android:layout_height="23dp"
-                android:layout_marginStart="8dp"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
                 android:gravity="center"
-                android:text="0"
-                android:textSize="15sp"
+                android:text="991"
+                android:textSize="17sp"
                 android:textColor="@android:color/black"
                 android:fontFamily="@font/poppins_regular"
                 android:background="@drawable/count_box_background" />
@@ -62,31 +67,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="14dp">
+            android:layout_marginBottom="18dp"
+            android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:src="@drawable/beverage_icon"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="İçecek" />
+                android:contentDescription="İçecek"
+                android:layout_marginEnd="8dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="İçecek"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:textColor="@android:color/black"
                 android:fontFamily="@font/poppins_regular" />
 
             <TextView
-                android:layout_width="35dp"
-                android:layout_height="23dp"
-                android:layout_marginStart="8dp"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
                 android:gravity="center"
                 android:text="0"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 android:textColor="@android:color/black"
                 android:fontFamily="@font/poppins_regular"
                 android:background="@drawable/count_box_background" />
@@ -97,31 +102,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="14dp">
+            android:layout_marginBottom="18dp"
+            android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:src="@drawable/medicine_icon"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="İlaç" />
+                android:contentDescription="İlaç"
+                android:layout_marginEnd="8dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="İlaç"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:textColor="@android:color/black"
                 android:fontFamily="@font/poppins_regular" />
 
             <TextView
-                android:layout_width="35dp"
-                android:layout_height="23dp"
-                android:layout_marginStart="8dp"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
                 android:gravity="center"
                 android:text="4"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 android:textColor="@android:color/black"
                 android:fontFamily="@font/poppins_regular"
                 android:background="@drawable/count_box_background" />
@@ -132,31 +137,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="14dp">
+            android:layout_marginBottom="18dp"
+            android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:src="@drawable/cosmetic_icon"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="Kozmetik" />
+                android:contentDescription="Kozmetik"
+                android:layout_marginEnd="8dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Kozmetik"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:textColor="@android:color/black"
                 android:fontFamily="@font/poppins_regular" />
 
             <TextView
-                android:layout_width="35dp"
-                android:layout_height="23dp"
-                android:layout_marginStart="8dp"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
                 android:gravity="center"
                 android:text="1"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 android:textColor="@android:color/black"
                 android:fontFamily="@font/poppins_regular"
                 android:background="@drawable/count_box_background" />
@@ -167,31 +172,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="14dp">
+            android:layout_marginBottom="18dp"
+            android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:src="@drawable/cleaning_icon"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="Temizlik" />
+                android:contentDescription="Temizlik"
+                android:layout_marginEnd="8dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Temizlik"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:textColor="@android:color/black"
                 android:fontFamily="@font/poppins_regular" />
 
             <TextView
-                android:layout_width="35dp"
-                android:layout_height="23dp"
-                android:layout_marginStart="8dp"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
                 android:gravity="center"
                 android:text="0"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 android:textColor="@android:color/black"
                 android:fontFamily="@font/poppins_regular"
                 android:background="@drawable/count_box_background" />
@@ -202,31 +207,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="6dp">
+            android:layout_marginBottom="18dp"
+            android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:src="@drawable/more_icon"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="Diğer" />
+                android:contentDescription="Diğer"
+                android:layout_marginEnd="8dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Diğer"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:textColor="@android:color/black"
                 android:fontFamily="@font/poppins_regular" />
 
             <TextView
-                android:layout_width="35dp"
-                android:layout_height="23dp"
-                android:layout_marginStart="8dp"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
                 android:gravity="center"
                 android:text="1"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 android:textColor="@android:color/black"
                 android:fontFamily="@font/poppins_regular"
                 android:background="@drawable/count_box_background" />

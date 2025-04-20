@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ProfileActivity">
 
     <!-- Kullanıcı Fotoğrafı -->
@@ -16,8 +17,7 @@
         android:src="@drawable/user_photo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-       />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Kullanıcı Adı -->
     <TextView
@@ -28,10 +28,10 @@
         android:textSize="24sp"
         android:textColor="@color/heading"
         android:fontFamily="@font/poppins_bold"
+        android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@id/image_user"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- İsraf Bilgisi Butonu -->
     <LinearLayout
@@ -42,27 +42,25 @@
         android:background="@drawable/profile_button_background"
         android:gravity="center"
         android:paddingHorizontal="12dp"
-        app:layout_constraintTop_toBottomOf="@id/text_user_name"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp">
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toBottomOf="@id/text_user_name"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="İsraf Bilgisi"
-            android:layout_marginTop="8dp"
-
             android:textSize="15sp"
             android:textColor="@color/heading"
-            android:fontFamily="@font/poppins_regular" />
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginTop="8dp" />
 
         <ImageView
             android:layout_width="14.94dp"
             android:layout_height="18.38dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="5dp"
-
             android:src="@drawable/down_vector" />
     </LinearLayout>
 
@@ -75,40 +73,38 @@
         android:background="@drawable/profile_button_background"
         android:gravity="center"
         android:paddingHorizontal="12dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintTop_toTopOf="@id/btn_waste_fragment"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="16dp">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ayarlar"
-            android:layout_marginTop="8dp"
             android:textSize="15sp"
             android:textColor="@color/heading"
-            android:fontFamily="@font/poppins_regular" />
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginTop="8dp" />
 
         <ImageView
             android:layout_width="14.94dp"
             android:layout_height="18.38dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="5dp"
-
-            android:src="@drawable/down_vector"
-             />
+            android:src="@drawable/down_vector" />
     </LinearLayout>
 
-    <!-- İçerik Kutusu (Fragment Alanı) -->
+    <!-- Fragment Alanı -->
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
-        android:layout_height="419dp"
-        android:layout_marginTop="126dp"
+        android:layout_height="0dp"
+        android:minHeight="300dp"
+        android:foreground="@drawable/fragment_border"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="100dp"
-        android:background="@android:color/white"
-        android:foreground="@drawable/fragment_border"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintTop_toBottomOf="@id/btn_waste_fragment"
         app:layout_constraintBottom_toTopOf="@id/bottom_nav_container_profile_activity"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,8 +115,8 @@
         android:id="@+id/bottom_nav_container_profile_activity"
         android:layout_width="match_parent"
         android:layout_height="82dp"
-        app:cardBackgroundColor="@android:color/white"
         app:cardElevation="8dp"
+        app:cardBackgroundColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">

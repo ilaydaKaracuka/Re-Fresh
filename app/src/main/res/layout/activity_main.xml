@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -15,6 +16,7 @@
         android:layout_height="32dp"
         android:layout_marginTop="24dp"
         android:src="@drawable/refresh"
+        android:contentDescription="Uygulama logosu"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -38,21 +40,21 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="51dp"
-            android:padding="12dp"
-            android:background="@drawable/edittext_rounded_stroke">
+            android:background="@drawable/edittext_rounded_stroke"
+            android:padding="12dp">
 
             <EditText
                 android:id="@+id/searchEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Ürün Ara"
+                android:background="@android:color/transparent"
+                android:inputType="text"
                 android:textColor="@color/editText_text_color"
                 android:textColorHint="@color/editText_text_color"
                 android:textSize="18sp"
-                android:layout_marginLeft="12dp"
-                android:background="@android:color/transparent"
-                android:paddingEnd="40dp"
-                android:inputType="text" />
+                android:layout_marginStart="12dp"
+                android:paddingEnd="40dp" />
 
             <ImageView
                 android:id="@+id/searchIcon"
@@ -61,7 +63,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/search_icon" />
+                android:src="@drawable/search_icon"
+                android:contentDescription="Arama ikonu" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -74,6 +77,8 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:clipToPadding="false"
+        android:importantForAccessibility="yes"
+        android:contentDescription="Ürün listesi"
         app:layout_constraintTop_toBottomOf="@id/searchBox"
         app:layout_constraintBottom_toTopOf="@id/bottom_nav_container_main_activity"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EnterCodeFragment">
+
+    <!-- Geri Tuşu - Touch target ve contentDescription eklendi -->
+
+    <!-- Logo -->
+
+    <ImageButton
+        android:id="@+id/backLoginBtn"
+        android:layout_width="34dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/back"
+        android:contentDescription="Geri dön"
+        android:outlineAmbientShadowColor="@color/cardview_light_background"
+        android:padding="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="177dp"
+        android:layout_height="107dp"
+        android:src="@drawable/refresh"
+        android:contentDescription="Uygulama logosu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp" />
+
+    <!-- Başlık -->
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="start"
+        android:text="Şifremi Unuttum"
+        android:textColor="@color/heading"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@+id/logoImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp" />
+
+    <!-- Açıklama Metni -->
+    <TextView
+        android:id="@+id/descriptionText"
+        android:layout_width="340dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="berna.b@example.com adresine gönderilen doğrulama kodunu girin."
+        android:textColor="@color/paragraph"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.615"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
+    <!-- Kod Kutuları (EditText) - Minimum dokunmatik hedef boyutu ve labelFor ile düzeltildi -->
+    <TextView
+        android:id="@+id/codeBoxLabel1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Doğrulama kodu birinci basamak"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/codeBox1"
+        android:layout_width="66dp"
+        android:layout_height="48dp"
+        android:minHeight="48dp"
+        android:alpha="0.3"
+        android:background="@drawable/count_box_background"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="1"
+        android:hint="1"
+        android:labelFor="@id/codeBoxLabel1"
+        android:textSize="24sp"
+        android:importantForAccessibility="yes"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/codeBox2"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/codeBoxLabel2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Doğrulama kodu ikinci basamak"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/codeBox2"
+        android:layout_width="61dp"
+        android:layout_height="48dp"
+        android:minHeight="48dp"
+        android:alpha="0.3"
+        android:background="@drawable/count_box_background"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="1"
+        android:hint="2"
+        android:labelFor="@id/codeBoxLabel2"
+        android:textSize="24sp"
+        android:importantForAccessibility="yes"
+        app:layout_constraintTop_toTopOf="@+id/codeBox1"
+        app:layout_constraintStart_toEndOf="@+id/codeBox1"
+        app:layout_constraintEnd_toStartOf="@+id/codeBox3"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/codeBoxLabel3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Doğrulama kodu üçüncü basamak"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/codeBox3"
+        android:layout_width="60dp"
+        android:layout_height="48dp"
+        android:minHeight="48dp"
+        android:alpha="0.3"
+        android:background="@drawable/count_box_background"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="1"
+        android:hint="3"
+        android:labelFor="@id/codeBoxLabel3"
+        android:textSize="24sp"
+        android:importantForAccessibility="yes"
+        app:layout_constraintTop_toTopOf="@+id/codeBox1"
+        app:layout_constraintStart_toEndOf="@+id/codeBox2"
+        app:layout_constraintEnd_toStartOf="@+id/codeBox4"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/codeBoxLabel4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Doğrulama kodu dördüncü basamak"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/codeBox4"
+        android:layout_width="61dp"
+        android:layout_height="48dp"
+        android:minHeight="48dp"
+        android:alpha="0.3"
+        android:background="@drawable/count_box_background"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="1"
+        android:hint="4"
+        android:labelFor="@id/codeBoxLabel4"
+        android:textSize="24sp"
+        android:importantForAccessibility="yes"
+        app:layout_constraintTop_toTopOf="@+id/codeBox1"
+        app:layout_constraintStart_toEndOf="@+id/codeBox3"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="24dp" />
+
+    <!-- "Kodu almadınız mı?" Metni -->
+
+    <!-- "Tekrar Gönder" Metni - Dokunma alanı artırıldı -->
+
+    <!-- Devam Et Butonu -->
+
+    <TextView
+        android:id="@+id/codeNotReceivedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Kodu almadınız mı? 00:20"
+        android:textColor="@color/paragraph"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/resendCodeText"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/codeBox2" />
+
+    <TextView
+        android:id="@+id/resendCodeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="372dp"
+        android:clickable="true"
+        android:contentDescription="Doğrulama kodunu tekrar gönder"
+        android:focusable="true"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:padding="8dp"
+        android:text="Tekrar Gönder"
+        android:textColor="#1E1E1E"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/codeNotReceivedText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="335dp"
+        android:layout_height="52dp"
+        android:backgroundTint="@color/button_text_color_3"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Devam Et"
+        android:textColor="@color/button_text_color_2"
+        android:textSize="12sp"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="32dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

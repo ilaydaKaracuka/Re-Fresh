@@ -11,7 +11,7 @@
 
     <!-- Başlık -->
     <TextView
-        android:id="@+id/logoutTitle"
+        android:id="@+id/removeProductTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ürünü Kaldır"
@@ -21,7 +21,7 @@
 
     <!-- Açıklama -->
     <TextView
-        android:id="@+id/logoutMessage"
+        android:id="@+id/removeProductMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ürünü silmek istediğinden emin misin?  "
@@ -42,7 +42,7 @@
 
         <!-- İptal Butonu -->
         <Button
-            android:id="@+id/btn_delete_account_cancel"
+            android:id="@+id/btnCancelRemoveProduct"
             android:layout_width="148dp"
             android:layout_height="52dp"
             android:text="İptal"
@@ -53,9 +53,9 @@
             android:layout_marginEnd="58dp"
             app:cornerRadius="12dp" />
 
-        <!-- Hesabı Sil Butonu -->
+        <!-- Ürünü Sil Butonu -->
         <Button
-            android:id="@+id/btnDeleteAccount"
+            android:id="@+id/btnConfirmRemoveProduct"
             android:layout_width="148dp"
             android:layout_height="52dp"
             android:text="Ürünü Sil"

@@ -7,35 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".EnterCodeFragment">
 
-    <!-- Geri Tuşu - Touch target ve contentDescription eklendi -->
-
-    <!-- Logo -->
-
-    <ImageButton
-        android:id="@+id/backLoginBtn"
-        android:layout_width="34dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="68dp"
-        android:background="@drawable/back"
-        android:contentDescription="Geri dön"
-        android:outlineAmbientShadowColor="@color/cardview_light_background"
-        android:padding="12dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/logoImage"
-        android:layout_width="177dp"
-        android:layout_height="107dp"
-        android:src="@drawable/refresh"
-        android:contentDescription="Uygulama logosu"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
-
     <!-- Başlık -->
+
+    <!-- Açıklama Metni - Başlığa daha yakın ve iki satır arası boşluk artırıldı -->
+
+    <!-- İkinci açıklama satırı ayrı bir TextView olarak eklendi -->
+
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
@@ -45,29 +22,46 @@
         android:text="Şifremi Unuttum"
         android:textColor="@color/heading"
         android:textSize="32sp"
-        app:layout_constraintTop_toBottomOf="@+id/logoImage"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        app:layout_constraintHorizontal_bias="0.143"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.309" />
 
-    <!-- Açıklama Metni -->
     <TextView
         android:id="@+id/descriptionText"
         android:layout_width="340dp"
-        android:layout_height="44dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_regular"
-        android:text="berna.b@example.com adresine gönderilen doğrulama kodunu girin."
+        android:text="berna.b@example.com adresine gönderilen"
         android:textColor="@color/paragraph"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.615"
+        app:layout_constraintHorizontal_bias="0.102"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
-    <!-- Kod Kutuları (EditText) - Minimum dokunmatik hedef boyutu ve labelFor ile düzeltildi -->
+    <TextView
+        android:id="@+id/descriptionText2"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="doğrulama kodunu girin."
+        android:textColor="@color/paragraph"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+
+    <!-- Kod Kutuları (EditText) - Corner radius 12 olacak (drawable/count_box_background dosyasına eklenecek) -->
     <TextView
         android:id="@+id/codeBoxLabel1"
         android:layout_width="0dp"
@@ -81,23 +75,23 @@
         android:id="@+id/codeBox1"
         android:layout_width="66dp"
         android:layout_height="48dp"
-        android:minHeight="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
         android:alpha="0.3"
         android:background="@drawable/count_box_background"
         android:gravity="center"
-        android:inputType="number"
-        android:maxLength="1"
         android:hint="1"
-        android:labelFor="@id/codeBoxLabel1"
-        android:textSize="24sp"
         android:importantForAccessibility="yes"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionText"
-        app:layout_constraintStart_toStartOf="parent"
+        android:inputType="number"
+        android:labelFor="@id/codeBoxLabel1"
+        android:maxLength="1"
+        android:minHeight="48dp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/codeBox2"
         app:layout_constraintHorizontal_chainStyle="packed"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="8dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionText2" />
 
     <TextView
         android:id="@+id/codeBoxLabel2"
@@ -185,30 +179,43 @@
 
     <!-- "Kodu almadınız mı?" Metni -->
 
-    <!-- "Tekrar Gönder" Metni - Dokunma alanı artırıldı -->
+    <!-- Zaman sayacı ayrı bir TextView olarak eklendi -->
 
-    <!-- Devam Et Butonu -->
+    <!-- "Tekrar Gönder" Metni - Hizalama düzeltildi ve renk değiştirildi -->
 
     <TextView
         android:id="@+id/codeNotReceivedText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/poppins_regular"
-        android:text="Kodu almadınız mı? 00:20"
+        android:text="Kodu almadınız mı? "
         android:textColor="@color/paragraph"
         android:textSize="15sp"
-        app:layout_constraintEnd_toStartOf="@+id/resendCodeText"
+        app:layout_constraintEnd_toStartOf="@+id/timeCounterText"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/codeBox2" />
+
+    <TextView
+        android:id="@+id/timeCounterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_mono_regular"
+        android:text="00:20"
+        android:textColor="@color/paragraph"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/codeNotReceivedText"
+        app:layout_constraintEnd_toStartOf="@+id/resendCodeText"
+        app:layout_constraintStart_toEndOf="@+id/codeNotReceivedText"
+        app:layout_constraintTop_toTopOf="@+id/codeNotReceivedText"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/resendCodeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="372dp"
         android:clickable="true"
         android:contentDescription="Doğrulama kodunu tekrar gönder"
         android:focusable="true"
@@ -218,25 +225,12 @@
         android:minHeight="48dp"
         android:padding="8dp"
         android:text="Tekrar Gönder"
-        android:textColor="#1E1E1E"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/codeNotReceivedText"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/register_button"
-        android:layout_width="335dp"
-        android:layout_height="52dp"
-        android:backgroundTint="@color/button_text_color_3"
-        android:fontFamily="@font/poppins_bold"
-        android:text="Devam Et"
         android:textColor="@color/button_text_color_2"
-        android:textSize="12sp"
-        app:cornerRadius="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/codeNotReceivedText"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="32dp" />
+        app:layout_constraintStart_toEndOf="@+id/timeCounterText"
+        app:layout_constraintTop_toTopOf="@+id/codeNotReceivedText"
+        app:layout_constraintVertical_bias="0.521" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

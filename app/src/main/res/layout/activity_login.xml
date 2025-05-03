@@ -11,31 +11,34 @@
     <ImageView
         android:id="@+id/logoImage"
         android:layout_width="176dp"
-        android:layout_height="107dp"
+        android:layout_height="43dp"
         android:layout_marginTop="24dp"
         android:src="@drawable/refresh"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Başlık -->
+
+    <!-- E-Posta -->
+
+    <!-- Şifre -->
+
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="359dp"
         android:layout_height="50dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/poppins_bold"
         android:gravity="start"
         android:text="Giriş Yap"
         android:textColor="@color/heading"
         android:textSize="32sp"
-        app:layout_constraintTop_toBottomOf="@id/logoImage"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        app:layout_constraintHorizontal_bias="0.73"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoImage" />
 
-    <!-- E-Posta -->
-
-    <!-- Şifre -->
     <EditText
         android:id="@+id/emailEditText"
         android:layout_width="335dp"
@@ -74,11 +77,14 @@
     <!-- Giriş Yap Butonu -->
 
     <!-- TextView3 -->
+
+    <!-- Alt Bilgi -->
+
     <Button
         android:id="@+id/register_button"
         android:layout_width="335dp"
         android:layout_height="52dp"
-        android:layout_marginTop="244dp"
+        android:layout_marginTop="264dp"
         android:backgroundTint="@color/button_text_color_3"
         android:fontFamily="@font/poppins_bold"
         android:text="Giriş Yap"
@@ -89,10 +95,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordEditText" />
 
-    <!-- Alt Bilgi -->
-
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textwiev3"
         android:layout_width="188dp"
         android:layout_height="16dp"
         android:layout_marginTop="12dp"
@@ -105,16 +109,14 @@
         android:id="@+id/noAccountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginBottom="48dp"
         android:fontFamily="@font/poppins_regular"
         android:text="Bir hesabın yok mu ?"
         android:textColor="@color/paragraph"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView3"
-        app:layout_constraintVertical_bias="0.886" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/loginText"
@@ -122,7 +124,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:fontFamily="@font/poppins_semi_bold"
-        android:text="  Giriş Yap"
+        android:text="Kayıt OL"
         android:textColor="@color/text_color"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -131,3 +133,4 @@
         app:layout_constraintTop_toTopOf="@id/noAccountText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

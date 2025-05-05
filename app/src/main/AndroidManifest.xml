@@ -28,7 +28,7 @@
             android:name=".OnboardingActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActiviy"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".ForgotPasswordActivity"

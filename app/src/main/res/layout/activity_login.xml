@@ -133,4 +133,3 @@
         app:layout_constraintTop_toTopOf="@id/noAccountText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

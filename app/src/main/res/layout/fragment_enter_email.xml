@@ -7,7 +7,7 @@
 
     <!-- Başlık -->
     <TextView
-        android:id="@+id/titleTextView"
+        android:id="@+id/titleTextView1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -23,7 +23,7 @@
 
     <!-- Açıklama -->
     <TextView
-        android:id="@+id/noAccountText"
+        android:id="@+id/noAccountText1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
@@ -33,13 +33,13 @@
         android:text="Lütfen hesabınıza bağlı e-posta adresinizi girin. Şifrenizi sıfırlamak için e-postanıza bir doğrulama kodu gönderilecektir."
         android:textColor="@color/paragraph"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- E-posta EditText -->
     <EditText
-        android:id="@+id/emailEditText"
+        android:id="@+id/emailEditText1"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="19dp"
@@ -52,7 +52,7 @@
         android:textColor="@color/editText_text_color"
         android:textColorHint="@color/editText_text_color"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@id/noAccountText"
+        app:layout_constraintTop_toBottomOf="@id/noAccountText1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

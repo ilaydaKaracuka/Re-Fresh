@@ -10,7 +10,7 @@
 
     <!-- Başlık -->
     <TextView
-        android:id="@+id/titleTextView"
+        android:id="@+id/titleTextView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
@@ -34,12 +34,12 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
-            android:id="@+id/emailText"
+            android:id="@+id/emailText4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
@@ -48,7 +48,7 @@
             android:textSize="15.4sp" />
 
         <TextView
-            android:id="@+id/descriptionText"
+            android:id="@+id/descriptionText4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
@@ -148,7 +148,7 @@
 
     <!-- Alt bilgi -->
     <LinearLayout
-        android:id="@+id/bottomInfoContainer"
+        android:id="@+id/bottomInfoContainer4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -160,7 +160,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
-            android:id="@+id/codeNotReceivedText"
+            android:id="@+id/codeNotReceivedText4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
@@ -169,7 +169,7 @@
             android:textSize="15.4sp" />
 
         <TextView
-            android:id="@+id/timeCounterText"
+            android:id="@+id/timeCounterText4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -180,7 +180,7 @@
             android:textSize="15.4sp" />
 
         <TextView
-            android:id="@+id/resendCodeText"
+            android:id="@+id/resendCodeText4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

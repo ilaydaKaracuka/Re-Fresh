@@ -46,4 +46,6 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(platform(libs.firebase.bom))
     implementation(libs.google.firebase.analytics)
+    implementation("com.google.firebase:firebase-auth")
+
 }

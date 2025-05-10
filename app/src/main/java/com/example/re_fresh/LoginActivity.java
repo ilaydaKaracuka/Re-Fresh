@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.*;
 
 import androidx.activity.EdgeToEdge;
@@ -18,15 +17,15 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
     EditText emailEditText, passwordEditText;
     Button loginButton;
     TextView registerTextView, forgotPasswordText;
-    private final String correctEmail = "ogulcan.erd@gmail.com";
-    private final String correctPassword = "1234";
     private boolean isPasswordVisible = false;
+    private FirebaseAuth mAuth; // Firebase Authentication nesnesi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,19 +39,22 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Firebase Auth başlatılıyor
+        mAuth = FirebaseAuth.getInstance();
+
         emailEditText = findViewById(R.id.emailEditText2);
         passwordEditText = findViewById(R.id.passwordEditText2);
         loginButton = findViewById(R.id.btn_login);
         registerTextView = findViewById(R.id.loginText2); // "Kayıt Ol" text
         forgotPasswordText = findViewById(R.id.txt_forgot_password); // "Şifremi unuttum"
 
-        // Şifre göster/gizle drawable ikon işlemi
+        // Şifre göster/gizle işlemi
         Drawable visibleIcon = ContextCompat.getDrawable(this, R.drawable.visible);
         Drawable notVisibleIcon = ContextCompat.getDrawable(this, R.drawable.not_visible);
 
         passwordEditText.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_UP) {
-                int drawableEnd = 2; // Right drawable
+                int drawableEnd = 2;
                 Drawable drawable = passwordEditText.getCompoundDrawables()[drawableEnd];
                 if (drawable != null) {
                     int drawableWidth = drawable.getBounds().width();
@@ -97,17 +99,29 @@ public class LoginActivity extends AppCompatActivity {
         emailEditText.addTextChangedListener(formWatcher);
         passwordEditText.addTextChangedListener(formWatcher);
 
-        // Giriş butonu
+        // Giriş butonu Firebase Authentication ile
         loginButton.setOnClickListener(v -> {
             String email = emailEditText.getText().toString().trim();
             String password = passwordEditText.getText().toString();
 
-            if (email.equals(correctEmail) && password.equals(correctPassword)) {
-                startActivity(new Intent(this, MainActivity.class));
-                finish();
-            } else {
-                Toast.makeText(this, "E-posta veya şifre yanlış", Toast.LENGTH_SHORT).show();
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Email ve şifre boş olamaz", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            // Firebase ile kullanıcı girişi yapılıyor
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            // Giriş başarılı
+                            Toast.makeText(LoginActivity.this, "Giriş başarılı!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(this, MainActivity.class));
+                            finish();
+                        } else {
+                            // Giriş başarısız
+                            Toast.makeText(LoginActivity.this, "Giriş başarısız: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
         });
     }
 

@@ -10,61 +10,61 @@
 
     <!-- Üst Bar Elemanlarının Düzgün Hizalanması - Tasarıma göre düzenlendi -->
     <ImageView
-        android:id="@+id/btnBack"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/btnBack2"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="22dp"
         android:padding="10dp"
         android:src="@drawable/back_icon"
-        android:background="@drawable/rounded_button_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvUrunEkleBaslik"
+        android:id="@+id/tvUrunEkleBaslik2"
+        android:fontFamily="@font/poppins_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:text="Ürün Düzenle"
         android:textColor="@color/heading"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
-        app:layout_constraintStart_toEndOf="@+id/btnBack"
-        app:layout_constraintTop_toTopOf="@+id/btnBack" />
+        app:layout_constraintBottom_toBottomOf="@+id/btnBack2"
+        app:layout_constraintStart_toEndOf="@+id/btnBack2"
+        app:layout_constraintTop_toTopOf="@+id/btnBack2" />
 
     <ImageView
-        android:id="@+id/btnDelete"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="16dp"
+        android:id="@+id/btnDelete2"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="14dp"
         android:padding="10dp"
-        android:background="@drawable/rounded_delete_background"
+        android:layout_marginBottom="1dp"
         android:src="@drawable/delete_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBack2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnBack" />
+        app:layout_constraintTop_toTopOf="@+id/btnBack2" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewUrunResim"
+        android:id="@+id/cardViewUrunResim2"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="220dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnBack">
+        app:layout_constraintTop_toBottomOf="@+id/btnBack2">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <ImageView
-                android:id="@+id/ivUrunResim"
+                android:id="@+id/ivUrunResim2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/add_product_corner"
@@ -78,22 +78,20 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
-                android:id="@+id/btnQrCode"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_margin="8dp"
-                android:background="@drawable/count_box_background"
+                android:id="@+id/btnQrCode2"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_margin="4dp"
                 android:padding="8dp"
                 android:src="@drawable/scanning_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
-                android:id="@+id/btnGallery"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_margin="8dp"
-                android:background="@drawable/count_box_background"
+                android:id="@+id/btnGallery2"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_margin="4dp"
                 android:padding="8dp"
                 android:src="@drawable/gallery_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -102,12 +100,14 @@
     </androidx.cardview.widget.CardView>
 
     <EditText
-        android:id="@+id/etUrunAdi"
+        android:id="@+id/etUrunAdi2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="24dp"
+        android:fontFamily="@font/poppins_regular"
+
         android:background="@drawable/edit_text_background"
         android:hint="Ürün Adı"
         android:inputType="text"
@@ -117,40 +117,43 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewUrunResim" />
+        app:layout_constraintTop_toBottomOf="@+id/cardViewUrunResim2" />
 
     <TextView
-        android:id="@+id/tvKategori"
+        android:id="@+id/tvKategori2"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="12dp"
         android:text="Kategori"
         android:textColor="@color/heading"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUrunAdi" />
+        app:layout_constraintTop_toBottomOf="@+id/etUrunAdi2" />
 
     <GridLayout
-        android:id="@+id/gridKategoriler"
+        android:id="@+id/gridKategoriler2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="19dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="22dp"
         android:columnCount="2"
         android:orientation="horizontal"
         android:rowCount="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvKategori">
+        app:layout_constraintTop_toBottomOf="@+id/tvKategori2">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cvGida"
+            android:id="@+id/cvGida2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
+
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             app:cardCornerRadius="8dp"
@@ -173,13 +176,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gıda"
+                    android:fontFamily="@font/poppins_regular"
+
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cvIcecek"
+            android:id="@+id/cvIcecek2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
@@ -205,13 +210,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="İçecek"
+                    android:fontFamily="@font/poppins_regular"
+
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cvIlac"
+            android:id="@+id/cvIlac2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
@@ -237,13 +244,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="İlaç"
+                    android:fontFamily="@font/poppins_regular"
+
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cvKozmetik"
+            android:id="@+id/cvKozmetik2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
@@ -269,13 +278,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Kozmetik"
+                    android:fontFamily="@font/poppins_regular"
+
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cvTemizlik"
+            android:id="@+id/cvTemizlik2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
@@ -301,13 +312,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Temizlik"
+                    android:fontFamily="@font/poppins_regular"
+
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cvDiger"
+            android:id="@+id/cvDiger2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
@@ -333,6 +346,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Diğer"
+                    android:fontFamily="@font/poppins_regular"
+
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -341,44 +356,46 @@
 
     <!-- Tam Kullanılmamış Ürün seçeneği -->
     <TextView
-        android:id="@+id/tvTamKullanilmamisUrun"
+        android:id="@+id/tvTamKullanilmamisUrun2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="13dp"
         android:text="Tam Kullanılmamış Ürün"
         android:textColor="@color/text_color"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridKategoriler" />
+        app:layout_constraintTop_toBottomOf="@+id/gridKategoriler2" />
 
     <CheckBox
-        android:id="@+id/cbTamKullanilmamisUrun"
+        android:id="@+id/cbTamKullanilmamisUrun2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvTamKullanilmamisUrun"
-        app:layout_constraintStart_toEndOf="@+id/tvTamKullanilmamisUrun"
-        app:layout_constraintTop_toTopOf="@+id/tvTamKullanilmamisUrun" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvTamKullanilmamisUrun2"
+        app:layout_constraintStart_toEndOf="@+id/tvTamKullanilmamisUrun2"
+        app:layout_constraintTop_toTopOf="@+id/tvTamKullanilmamisUrun2" />
 
     <Button
-        android:id="@+id/btnKaydet"
+        android:id="@+id/btnKaydet2"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="18dp"
+        android:fontFamily="@font/poppins_bold"
+
         android:backgroundTint="@color/main_theme_color"
         android:text="Kaydet"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:cornerRadius="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_container_add_product_activity"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_container_add_product_activity2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/bottom_nav_container_add_product_activity"
+        android:id="@+id/bottom_nav_container_add_product_activity2"
         android:layout_width="match_parent"
         android:layout_height="66dp"
         app:cardBackgroundColor="@android:color/white"
@@ -388,7 +405,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation_add_product_activity"
+            android:id="@+id/bottom_navigation_add_product_activity2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
@@ -400,3 +417,4 @@
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -12,7 +12,9 @@
         android:id="@+id/tvUrunEkleBaslik"
         android:layout_width="92dp"
         android:layout_height="35dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="22dp"
+        android:fontFamily="@font/poppins_bold"
+
         android:text="Ürün Ekle"
         android:textColor="@color/heading"
         android:textSize="20sp"
@@ -48,7 +50,6 @@
                 android:layout_width="match_parent"
 
                 android:layout_height="match_parent"
-                android:background="@drawable/add_product_corner"
                 android:scaleType="centerInside"
                 android:src="@drawable/camera_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -60,21 +61,19 @@
 
             <ImageView
                 android:id="@+id/btnQrCode"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_margin="8dp"
-                android:background="@drawable/count_box_background"
-                android:padding="8dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_margin="4dp"
+                android:padding="4dp"
                 android:src="@drawable/scanning_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
                 android:id="@+id/btnGallery"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_margin="8dp"
-                android:background="@drawable/count_box_background"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="4dp"
                 android:padding="8dp"
                 android:src="@drawable/gallery_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -89,6 +88,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="29dp"
         android:layout_marginEnd="24dp"
+        android:fontFamily="@font/poppins_regular"
+
         android:background="@drawable/edit_text_background"
         android:hint="Ürün Adı"
         android:inputType="text"
@@ -104,6 +105,8 @@
         android:id="@+id/tvKategori"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+
         android:layout_marginStart="27dp"
         android:layout_marginTop="21dp"
         android:text="Kategori"
@@ -154,6 +157,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gıda"
+                    android:fontFamily="@font/poppins_regular"
+
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -186,6 +191,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="İçecek"
+                    android:fontFamily="@font/poppins_regular"
+
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -219,6 +226,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="İlaç"
+                    android:fontFamily="@font/poppins_regular"
+
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -252,6 +261,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Kozmetik"
+                    android:fontFamily="@font/poppins_regular"
+
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -286,6 +297,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Temizlik"
+                    android:fontFamily="@font/poppins_regular"
+
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -320,6 +333,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Diğer"
+                    android:fontFamily="@font/poppins_regular"
+
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -335,7 +350,9 @@
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="18dp"
+        android:fontFamily="@font/poppins_bold"
+
         android:backgroundTint="@color/main_theme_color"
         android:text="Kaydet"
         android:textColor="@android:color/white"

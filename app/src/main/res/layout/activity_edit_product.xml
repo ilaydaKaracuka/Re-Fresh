@@ -8,34 +8,56 @@
     android:background="@color/white"
     tools:context=".AddProductActivity">
 
-    <TextView
-        android:id="@+id/tvUrunEkleBaslik"
-        android:layout_width="92dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="4dp"
-        android:text="Ürün Ekle"
-        android:textColor="@color/heading"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
+    <!-- Üst Bar Elemanlarının Düzgün Hizalanması - Tasarıma göre düzenlendi -->
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:padding="10dp"
+        android:src="@drawable/back_icon"
+        android:background="@drawable/rounded_button_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvUrunEkleBaslik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Ürün Düzenle"
+        android:textColor="@color/heading"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+        app:layout_constraintStart_toEndOf="@+id/btnBack"
+        app:layout_constraintTop_toTopOf="@+id/btnBack" />
+
+    <ImageView
+        android:id="@+id/btnDelete"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_delete_background"
+        android:src="@drawable/delete_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnBack" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewUrunResim"
         android:layout_width="0dp"
-        android:layout_height="220dp"
+        android:layout_height="200dp"
         android:layout_marginStart="24dp"
-
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/tvUrunEkleBaslik">
+        app:layout_constraintTop_toBottomOf="@+id/btnBack">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -44,7 +66,6 @@
             <ImageView
                 android:id="@+id/ivUrunResim"
                 android:layout_width="match_parent"
-
                 android:layout_height="match_parent"
                 android:background="@drawable/add_product_corner"
                 android:scaleType="centerInside"
@@ -85,7 +106,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/edit_text_background"
         android:hint="Ürün Adı"
@@ -102,8 +123,8 @@
         android:id="@+id/tvKategori"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:text="Kategori"
         android:textColor="@color/heading"
         android:textSize="16sp"
@@ -116,7 +137,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:columnCount="2"
         android:orientation="horizontal"
@@ -196,7 +217,6 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:layout_marginTop="21dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="1dp">
 
@@ -229,7 +249,6 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:layout_marginTop="21dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="1dp">
 
@@ -262,8 +281,6 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:layout_marginTop="21dp"
-
             app:cardCornerRadius="8dp"
             app:cardElevation="1dp">
 
@@ -296,8 +313,6 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:layout_marginTop="21dp"
-
             app:cardCornerRadius="8dp"
             app:cardElevation="1dp">
 
@@ -324,16 +339,35 @@
         </androidx.cardview.widget.CardView>
     </GridLayout>
 
-    <!-- Kaydet Button moved above bottom navigation -->
+    <!-- Tam Kullanılmamış Ürün seçeneği -->
+    <TextView
+        android:id="@+id/tvTamKullanilmamisUrun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="Tam Kullanılmamış Ürün"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridKategoriler" />
 
-    <!-- Bottom Navigation -->
+    <CheckBox
+        android:id="@+id/cbTamKullanilmamisUrun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTamKullanilmamisUrun"
+        app:layout_constraintStart_toEndOf="@+id/tvTamKullanilmamisUrun"
+        app:layout_constraintTop_toTopOf="@+id/tvTamKullanilmamisUrun" />
+
     <Button
         android:id="@+id/btnKaydet"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/main_theme_color"
         android:text="Kaydet"
         android:textColor="@android:color/white"
@@ -341,7 +375,6 @@
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav_container_add_product_activity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.cardview.widget.CardView
@@ -360,10 +393,10 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             app:itemActiveIndicatorStyle="@android:color/transparent"
+            app:itemBackground="@drawable/bottom_nav_item_background"
             app:itemIconSize="30dp"
             app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/bottom_nav_menu"
-            app:itemBackground="@drawable/bottom_nav_item_background" />
+            app:menu="@menu/bottom_nav_menu" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

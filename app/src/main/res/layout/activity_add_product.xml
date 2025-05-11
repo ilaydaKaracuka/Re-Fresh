@@ -43,6 +43,8 @@
 
             <ImageView
                 android:id="@+id/ivUrunResim"
+                android:background="@drawable/add_product_corner"
+
                 android:layout_width="match_parent"
 
                 android:layout_height="match_parent"

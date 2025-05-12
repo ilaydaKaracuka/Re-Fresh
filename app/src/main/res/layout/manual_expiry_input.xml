@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/logout_border"
+    android:layout_gravity="center"
+    android:clipToPadding="false"
+    android:gravity="center_horizontal">
+
+    <!-- Başlık -->
+    <TextView
+        android:id="@+id/logoutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Son Kullanma Tarihini Gir"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- Ortalanmış EditText -->
+    <EditText
+        android:id="@+id/logoutDateInput"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:hint="GG/AA/YYYY"
+        android:gravity="center"
+        android:background="@drawable/expiry_input"
+        android:padding="10dp"
+        android:inputType="date"
+        android:layout_marginBottom="39dp"/>
+
+    <!-- Buton -->
+    <Button
+        android:id="@+id/btn_logout_cancel"
+        android:layout_width="148dp"
+        android:layout_height="52dp"
+        android:text="Kaydet"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:fontFamily="@font/poppins_bold"
+        android:backgroundTint="@color/blue"
+        app:cornerRadius="12dp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

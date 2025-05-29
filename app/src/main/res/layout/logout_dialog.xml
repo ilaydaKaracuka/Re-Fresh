@@ -57,7 +57,7 @@
 
         <!-- Çıkış Yap Butonu -->
         <Button
-            android:id="@+id/btnLogout"
+            android:id="@+id/btn_confirm_logout"
             android:layout_width="148dp"
             android:layout_height="52dp"
             android:text="Çıkış Yap"

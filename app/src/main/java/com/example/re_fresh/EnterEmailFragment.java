@@ -1,64 +1,101 @@
 package com.example.re_fresh;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EnterEmailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
+import com.google.firebase.auth.FirebaseAuth;
+
 public class EnterEmailFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private EditText emailEditText;
+    private Button checkEmailButton;
+    private ImageButton backLoginBtn;
+    private FirebaseAuth mAuth;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public EnterEmailFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EnterEmailFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static EnterEmailFragment newInstance(String param1, String param2) {
-        EnterEmailFragment fragment = new EnterEmailFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    public EnterEmailFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_enter_email, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_enter_email, container, false);
+
+        emailEditText = view.findViewById(R.id.emailEditText1);
+        mAuth = FirebaseAuth.getInstance();
+
+        if (getActivity() != null) {
+            checkEmailButton = getActivity().findViewById(R.id.forgot_password_button);
+            backLoginBtn = getActivity().findViewById(R.id.backLoginBtn);
+
+            if (checkEmailButton != null) {
+                emailEditText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        String email = s.toString().trim();
+                        boolean isValid = Patterns.EMAIL_ADDRESS.matcher(email).matches();
+
+                        checkEmailButton.setBackgroundResource(
+                                isValid ? R.drawable.rounded_button_green : R.drawable.rounded_button
+                        );
+                        checkEmailButton.setBackgroundTintList(
+                                ContextCompat.getColorStateList(requireContext(),
+                                        isValid ? R.color.main_theme_color : R.color.button_text_color_3)
+                        );
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {}
+                });
+
+                checkEmailButton.setOnClickListener(v -> {
+                    String email = emailEditText.getText().toString().trim();
+
+                    if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                        Toast.makeText(requireContext(), "Lütfen geçerli bir e-posta girin", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    mAuth.sendPasswordResetEmail(email)
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(requireContext(), "Şifre sıfırlama linki e-posta adresinize gönderildi.", Toast.LENGTH_LONG).show();
+                                } else {
+                                    try {
+                                        throw task.getException();
+                                    } catch (com.google.firebase.auth.FirebaseAuthInvalidUserException e) {
+                                        Toast.makeText(requireContext(), "Bu email adresi kayıtlı değil.", Toast.LENGTH_LONG).show();
+                                    } catch (Exception e) {
+                                        Toast.makeText(requireContext(), "Hata oluştu: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                });
+            }
+
+            if (backLoginBtn != null) {
+                backLoginBtn.setOnClickListener(v -> {
+                    Intent intent = new Intent(requireContext(), LoginActivity.class);
+                    startActivity(intent);
+                });
+            }
+        }
+
+        return view;
     }
 }

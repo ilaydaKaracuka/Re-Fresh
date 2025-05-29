@@ -21,6 +21,8 @@ import android.text.InputType;
 import android.view.MotionEvent;
 import androidx.core.content.ContextCompat;
 
+
+
 public class RegisterActivity extends AppCompatActivity {
 
     // Firebase kimlik doğrulama nesnesi

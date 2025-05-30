@@ -1,5 +1,7 @@
 package com.example.re_fresh;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +16,10 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     private List<Product> productList;
+    private Context context;
 
-    public ProductAdapter(List<Product> productList) {
+    public ProductAdapter(Context context, List<Product> productList) {
+        this.context = context;
         this.productList = productList;
     }
 
@@ -33,6 +37,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.productCategory.setText(product.getProductCategory());
         holder.productDayLeft.setText(product.getProductDayLeft());
         holder.productImage.setImageResource(product.getProductImage());
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, EditProductActivity.class);
+            intent.putExtra("urunAdi", product.getProductName());
+            intent.putExtra("kategori", product.getProductCategory());
+            intent.putExtra("productId", product.getProductId());
+            context.startActivity(intent);
+        });
     }
 
     @Override

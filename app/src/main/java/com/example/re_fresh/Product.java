@@ -5,15 +5,16 @@ public class Product {
     private String productCategory;
     private String productDayLeft;
     private int productImage;
+    private String productId;
 
-    public Product(String productName, String productCategory, String productDayLeft, int productImage) {
+    public Product(String productName, String productCategory, String productDayLeft, int productImage, String productId) {
         this.productName = productName;
         this.productCategory = productCategory;
         this.productDayLeft = productDayLeft;
         this.productImage = productImage;
+        this.productId = productId;
     }
 
-    // Getter metodları
     public String getProductName() {
         return productName;
     }
@@ -28,5 +29,9 @@ public class Product {
 
     public int getProductImage() {
         return productImage;
+    }
+
+    public String getProductId() {
+        return productId;
     }
 }

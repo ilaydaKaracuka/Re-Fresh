@@ -99,7 +99,6 @@ public class LoginActivity extends AppCompatActivity {
         emailEditText.addTextChangedListener(formWatcher);
         passwordEditText.addTextChangedListener(formWatcher);
 
-        // Giriş butonu Firebase Authentication ile
         loginButton.setOnClickListener(v -> {
             String email = emailEditText.getText().toString().trim();
             String password = passwordEditText.getText().toString();
@@ -109,17 +108,17 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            // Firebase ile kullanıcı girişi yapılıyor
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
-                            // Giriş başarılı
+
                             Toast.makeText(LoginActivity.this, "Giriş başarılı!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(this, MainActivity.class));
                             finish();
                         } else {
-                            // Giriş başarısız
-                            Toast.makeText(LoginActivity.this, "Giriş başarısız: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(LoginActivity.this, "Giriş başarısız: " + task.getException().getMessage(),
+                                    Toast.LENGTH_SHORT).show();
                         }
                     });
         });

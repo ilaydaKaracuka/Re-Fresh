@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,9 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SettingsFragment extends Fragment {
 
@@ -68,46 +72,50 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        dialogView.findViewById(R.id.btnConfirmAccountDeletion).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Hesap silindi.", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-                // startActivity(new Intent(getActivity(), LoginActivity.class));
-                // getActivity().finish();
-            }
+        dialogView.findViewById(R.id.btnConfirmAccountDeletion).setOnClickListener(v -> {
+            dialog.dismiss();
+            deleteAccountAndUserProducts();
         });
 
         dialog.show();
     }
+    private void deleteAccountAndUserProducts() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-//    private void showLogoutDialog() {
-//        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.logout_dialog, null);
-//
-//        AlertDialog dialog = new AlertDialog.Builder(getContext())
-//                .setView(dialogView)
-//                .create();
-//
-//        dialogView.findViewById(R.id.btn_logout_cancel).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.dismiss();
-//            }
-//        });
-//
-//        dialogView.findViewById(R.id.btn_confirm_logout).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Toast.makeText(getContext(), "Çıkış yapıldı.", Toast.LENGTH_SHORT).show();
-//                dialog.dismiss();
-//                // startActivity(new Intent(getActivity(), LoginActivity.class));
-//                // getActivity().finish();
-//            }
-//        });
-//
-//        dialog.show();
-//    }
+        if (user != null) {
+            String uid = user.getUid();
+
+            db.collection("users")
+                    .document(uid)
+                    .collection("products")
+                    .get()
+                    .addOnSuccessListener(querySnapshot -> {
+                        for (DocumentSnapshot doc : querySnapshot) {
+                            doc.getReference().delete();
+                        }
+                        db.collection("users").document(uid).delete()
+                                .addOnSuccessListener(unused -> Log.d("DELETE", "Kullanıcı verisi silindi"))
+                                .addOnFailureListener(e -> Log.e("DELETE", "Kullanıcı verisi silinemedi", e));
+
+                        user.delete()
+                                .addOnCompleteListener(task -> {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getContext(), "Hesap tamamen silindi", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(getActivity(), WelcomeActivity.class));
+                                        getActivity().finish();
+                                    } else {
+                                        Toast.makeText(getContext(), "Lütfen tekrar giriş yapın", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e("DELETE", "Ürünler silinemedi", e);
+                        Toast.makeText(getContext(), "Ürünler silinemedi", Toast.LENGTH_SHORT).show();
+                    });
+        }
+    }
+
 
     private void showLogoutDialog() {
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.logout_dialog, null);
@@ -116,15 +124,11 @@ public class SettingsFragment extends Fragment {
                 .setView(dialogView)
                 .create();
 
-        // İptal butonu
         dialogView.findViewById(R.id.btn_logout_cancel).setOnClickListener(v -> dialog.dismiss());
-
-        // Çıkışı onayla butonu
         dialogView.findViewById(R.id.btn_confirm_logout).setOnClickListener(v -> {
-            // Firebase çıkışı
+
             FirebaseAuth.getInstance().signOut();
 
-            // SharedPreferences'tan is_logged_in değerini false yap
             SharedPreferences prefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("is_logged_in", false);
@@ -133,7 +137,6 @@ public class SettingsFragment extends Fragment {
             Toast.makeText(getContext(), "Çıkış yapıldı.", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
 
-            // WelcomeActivity'e yönlendir
             Intent intent = new Intent(getActivity(), WelcomeActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);

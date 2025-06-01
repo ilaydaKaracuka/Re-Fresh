@@ -166,6 +166,20 @@ public class AddProductActivity extends AppCompatActivity {
         qrCode.setVisibility(View.GONE);
     }
 
+//    private void selectCategory(String category) {
+//        selectedCategory = category;
+//
+//        int selectedColor = getColor(R.color.main_theme_color);
+//        int defaultColor = getColor(R.color.white);
+//
+//        cvGida.setCardBackgroundColor(category.equals("Gıda") ? selectedColor : defaultColor);
+//        cvIcecek.setCardBackgroundColor(category.equals("İçecek") ? selectedColor : defaultColor);
+//        cvIlac.setCardBackgroundColor(category.equals("İlaç") ? selectedColor : defaultColor);
+//        cvKozmetik.setCardBackgroundColor(category.equals("Kozmetik") ? selectedColor : defaultColor);
+//        cvTemizlik.setCardBackgroundColor(category.equals("Temizlik") ? selectedColor : defaultColor);
+//        cvDiger.setCardBackgroundColor(category.equals("Diğer") ? selectedColor : defaultColor);
+//    }
+
     private void selectCategory(String category) {
         selectedCategory = category;
 
@@ -178,7 +192,17 @@ public class AddProductActivity extends AppCompatActivity {
         cvKozmetik.setCardBackgroundColor(category.equals("Kozmetik") ? selectedColor : defaultColor);
         cvTemizlik.setCardBackgroundColor(category.equals("Temizlik") ? selectedColor : defaultColor);
         cvDiger.setCardBackgroundColor(category.equals("Diğer") ? selectedColor : defaultColor);
+
+        // Kategoriye göre resmi set et
+        int drawableRes = getDrawableResourceByCategory(category);
+        if (drawableRes != 0) {
+            urunResim.setImageResource(drawableRes);
+            hideImageSourceButtons();  // İstersen seçince butonları gizle
+        } else {
+            urunResim.setImageDrawable(null);  // Resim yoksa sıfırla
+        }
     }
+
 
     // Tarih popup'u gösteren method
     private void showExpiryInputDialog(String urunAdi, String kategori) {
@@ -224,17 +248,14 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
 
-    // Firestore'a tarih ile beraber ürün kaydeden method
     private void saveProductToFirestore(String urunAdi, String kategori, String expiryDateString) {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser == null) {
             Toast.makeText(this, "Kullanıcı oturumu yok", Toast.LENGTH_SHORT).show();
             return;
         }
-
         String userId = currentUser.getUid();
 
-        // String tarihi Date'e çeviriyoruz
         Date expiryDate;
         try {
             expiryDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(expiryDateString);
@@ -246,7 +267,7 @@ public class AddProductActivity extends AppCompatActivity {
         Map<String, Object> productData = new HashMap<>();
         productData.put("urunAdi", urunAdi);
         productData.put("kategori", kategori);
-        productData.put("expiryDate", expiryDate);  // Artık Date nesnesi
+        productData.put("expiryDate", expiryDate);
         productData.put("timestamp", FieldValue.serverTimestamp());
 
         FirebaseFirestore.getInstance()
@@ -257,7 +278,6 @@ public class AddProductActivity extends AppCompatActivity {
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(this, "Ürün ve tarih kaydedildi", Toast.LENGTH_SHORT).show();
 
-                    // Alanları temizle
                     etUrunAdi.setText("");
                     selectCategory("");
                     urunResim.setImageDrawable(null);
@@ -269,4 +289,24 @@ public class AddProductActivity extends AppCompatActivity {
                         Toast.makeText(this, "Kayıt başarısız: " + e.getMessage(), Toast.LENGTH_SHORT).show()
                 );
     }
+
+    private int getDrawableResourceByCategory(String category) {
+        switch (category) {
+            case "Gıda":
+                return R.drawable.gida;       // drawable/gida.png gibi varsayalım
+            case "İçecek":
+                return R.drawable.icecek;
+            case "İlaç":
+                return R.drawable.ilac;
+            case "Kozmetik":
+                return R.drawable.kozmetik;
+            case "Temizlik":
+                return R.drawable.temizlik;
+            case "Diğer":
+                return R.drawable.diger;
+            default:
+                return 0;  // Veya default bir resim koyabilirsin
+        }
+    }
+
 }

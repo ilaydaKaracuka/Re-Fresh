@@ -22,13 +22,6 @@ public class SplashActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_splash);
 
-//        // Handler kullanarak 3 saniye bekleyip yeni aktiviteye geçiş yap
-//        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-//            Intent intent = new Intent(SplashActivity.this, OnboardingActivity.class);
-//            startActivity(intent);
-//            finish(); // Splash ekranını kapat
-//        },1800);
-
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
             boolean isFirstTime = prefs.getBoolean("first_time", true); // onboarding gösterildi mi?

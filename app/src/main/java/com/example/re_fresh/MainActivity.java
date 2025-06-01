@@ -45,9 +45,6 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -91,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     private void loadProductsFromFirestore() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
@@ -118,18 +116,14 @@ public class MainActivity extends AppCompatActivity {
                             String docId = doc.getId();
 
                             if (urunAdi == null || kategori == null || expiryDate == null) {
-                                continue; // eksik veri varsa atla
+                                continue;
                             }
 
-                            int resim = R.drawable.product_example;
+                            // Kategoriye göre drawable resim al
+                            int resim = getDrawableResourceByCategory(kategori);
 
-                            // Tarihi "dd/MM/yyyy" formatında al
                             String formattedDate = sdf.format(expiryDate);
-
-                            // Kalan gün sayısını hesapla
                             String daysLeft = calculateDaysLeft(expiryDate);
-
-                            // Tarih ve kalan gün bilgisini birlikte göster
                             String displayDate = formattedDate + " (" + daysLeft + ")";
 
                             productList.add(new Product(urunAdi, kategori, displayDate, resim, docId));
@@ -144,6 +138,12 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, "Ürünler alınamadı: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     Log.e("FirestoreError", "Veri çekme hatası: ", e);
                 });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadProductsFromFirestore();  // bu senin ürünleri çeken metot
     }
 
     private String calculateDaysLeft(Date expiryDate) {
@@ -161,5 +161,29 @@ public class MainActivity extends AppCompatActivity {
             return daysLeft + " gün kaldı";
         }
     }
+
+    private int getDrawableResourceByCategory(String category) {
+        if (category == null) return R.drawable.product_example; // default resim
+
+        switch (category) {
+            case "Gıda":
+                return R.drawable.gida;
+            case "İçecek":
+                return R.drawable.icecek;
+            case "İlaç":
+                return R.drawable.ilac;
+            case "Kozmetik":
+                return R.drawable.kozmetik;
+            case "Temizlik":
+                return R.drawable.temizlik;
+            case "Diğer":
+                return R.drawable.diger;
+            default:
+                return R.drawable.product_example;
+        }
+    }
+
+
+
 
 }

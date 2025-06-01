@@ -27,14 +27,11 @@ public class WelcomeActivity extends AppCompatActivity {
         boolean isLoggedIn = prefs.getBoolean("is_logged_in", false);
 
         if (isLoggedIn) {
-            // Kullanıcı zaten giriş yapmış → Welcome'ı atla, MainActivity'e git
             Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
             return;
         }
-
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

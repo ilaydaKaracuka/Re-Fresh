@@ -70,11 +70,11 @@ public class EnterEmailFragment extends Fragment {
                         Toast.makeText(requireContext(), "Lütfen geçerli bir e-posta girin", Toast.LENGTH_SHORT).show();
                         return;
                     }
-
                     mAuth.sendPasswordResetEmail(email)
                             .addOnCompleteListener(task -> {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(requireContext(), "Şifre sıfırlama linki e-posta adresinize gönderildi.", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(requireContext(), "Şifre sıfırlama linki e-posta adresinize gönderildi.",
+                                            Toast.LENGTH_LONG).show();
                                 } else {
                                     try {
                                         throw task.getException();
@@ -87,7 +87,6 @@ public class EnterEmailFragment extends Fragment {
                             });
                 });
             }
-
             if (backLoginBtn != null) {
                 backLoginBtn.setOnClickListener(v -> {
                     Intent intent = new Intent(requireContext(), LoginActivity.class);

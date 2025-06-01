@@ -85,27 +85,19 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void showAuthenticatedUserName() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
         if (user != null) {
             String uid = user.getUid();
-
             FirebaseFirestore.getInstance().collection("users")
                     .document(uid)
                     .get()
                     .addOnSuccessListener(documentSnapshot -> {
                         if (documentSnapshot.exists()) {
-                            String firstName = documentSnapshot.getString("firstName");
-                            String lastName = documentSnapshot.getString("lastName");
-
-                            if (firstName != null && !firstName.isEmpty()) {
-                                String fullName = firstName;
-                                if (lastName != null && !lastName.isEmpty()) {
-                                    fullName += " " + lastName;
-                                }
+                            String fullName = documentSnapshot.getString("fullName");
+                            if (fullName != null && !fullName.isEmpty()) {
                                 userNameTextView.setText(fullName);
                             } else {
                                 userNameTextView.setText("Ad bilgisi yok");
-                                Log.w("Firestore", "Ad bilgisi boş");
+                                Log.w("Firestore", "fullName alanı boş");
                             }
                         } else {
                             userNameTextView.setText("Kullanıcı bilgisi bulunamadı");

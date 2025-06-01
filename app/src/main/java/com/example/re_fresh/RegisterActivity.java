@@ -16,11 +16,15 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import android.graphics.drawable.Drawable;
 import android.text.InputType;
 import android.view.MotionEvent;
 import androidx.core.content.ContextCompat;
 
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -89,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         });
         loginText.setOnClickListener(v -> {
-            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
             finish();
         });
 
@@ -97,37 +101,78 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton.setOnClickListener(v -> createAccount());
     }
     // Kullanıcıyı Firebase ile kayıt eden fonksiyon
+
     private void createAccount() {
-        // Kullanıcının girdiği email ve şifreyi al
         String fullName = fullNameEditText.getText().toString().trim();
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
 
-        // Email veya şifre boşsa uyarı ver
         if (fullName.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Ad Soyad, Email ve Şifre boş olamaz!", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        // Firebase ile kullanıcı kaydı yap
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        // Kayıt başarılı
                         FirebaseUser user = mAuth.getCurrentUser();
                         Toast.makeText(RegisterActivity.this, "Kayıt başarılı!", Toast.LENGTH_SHORT).show();
-                        Log.d("FIREBASE", "createUserWithEmail:success");
 
-                        // Giriş ekranına yönlendirme
-                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                        finish(); // Bu ekranı kapat
+                        // Firestore'a kayıt ekle
+                        if (user != null) {
+                            String userId = user.getUid();
+                            FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+                            Map<String, Object> userMap = new HashMap<>();
+                            userMap.put("fullName", fullName);
+                            userMap.put("email", email);
+                            userMap.put("userId", userId);
+
+                            db.collection("users").document(userId)
+                                    .set(userMap)
+                                    .addOnSuccessListener(aVoid -> Log.d("FIRESTORE", "Kullanıcı verileri kaydedildi."))
+                                    .addOnFailureListener(e -> Log.w("FIRESTORE", "Firestore kayıt hatası", e));
+                        }
+                        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                        finish();
                     } else {
-                        // Kayıt başarısız olduysa hata mesajı göster
                         Log.w("FIREBASE", "createUserWithEmail:failure", task.getException());
                         Toast.makeText(RegisterActivity.this, "Kayıt başarısız: " + task.getException().getMessage(),
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
     }
+
+//    private void createAccount() {
+//        // Kullanıcının girdiği email ve şifreyi al
+//        String fullName = fullNameEditText.getText().toString().trim();
+//        String email = emailEditText.getText().toString().trim();
+//        String password = passwordEditText.getText().toString().trim();
+//
+//        // Email veya şifre boşsa uyarı ver
+//        if (fullName.isEmpty() || email.isEmpty() || password.isEmpty()) {
+//            Toast.makeText(this, "Ad Soyad, Email ve Şifre boş olamaz!", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//
+//        // Firebase ile kullanıcı kaydı yap
+//        mAuth.createUserWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(this, task -> {
+//                    if (task.isSuccessful()) {
+//                        // Kayıt başarılı
+//                        FirebaseUser user = mAuth.getCurrentUser();
+//                        Toast.makeText(RegisterActivity.this, "Kayıt başarılı!", Toast.LENGTH_SHORT).show();
+//                        Log.d("FIREBASE", "createUserWithEmail:success");
+//
+//                        // Giriş ekranına yönlendirme
+//                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+//                        finish(); // Bu ekranı kapat
+//
+//                    } else {
+//                        // Kayıt başarısız olduysa hata mesajı göster
+//                        Log.w("FIREBASE", "createUserWithEmail:failure", task.getException());
+//                        Toast.makeText(RegisterActivity.this, "Kayıt başarısız: " + task.getException().getMessage(),
+//                                Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
 }

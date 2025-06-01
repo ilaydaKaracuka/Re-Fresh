@@ -40,9 +40,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, EditProductActivity.class);
-            intent.putExtra("urunAdi", product.getProductName());
-            intent.putExtra("kategori", product.getProductCategory());
+            intent.putExtra("productName", product.getProductName());
+            intent.putExtra("productCategory", product.getProductCategory());
             intent.putExtra("productId", product.getProductId());
+
             context.startActivity(intent);
         });
     }

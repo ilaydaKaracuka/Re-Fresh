@@ -1,7 +1,10 @@
 package com.example.re_fresh;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,9 +48,10 @@ public class EditProductActivity extends AppCompatActivity {
         });
 
         // Intent ile gelen verileri al
+        productName = getIntent().getStringExtra("urunAdi");
+        productCategory = getIntent().getStringExtra("kategori");
         productId = getIntent().getStringExtra("productId");
-        productName = getIntent().getStringExtra("productName");
-        productCategory = getIntent().getStringExtra("productCategory");
+
 
         db = FirebaseFirestore.getInstance();
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -93,7 +97,13 @@ public class EditProductActivity extends AppCompatActivity {
                 .delete()
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(this, "Ürün silindi", Toast.LENGTH_SHORT).show();
-                    finish();
+
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                        Intent intent = new Intent(this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    }, 1500);  // 1500 ms = 1.5 saniye
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Silme hatası: " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -108,7 +118,6 @@ public class EditProductActivity extends AppCompatActivity {
             etUrunAdi2.setError("Ürün adı boş olamaz");
             return;
         }
-
         db.collection("users")
                 .document(userId)
                 .collection("products")

@@ -27,7 +27,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     // Firebase kimlik doğrulama nesnesi
     private FirebaseAuth mAuth;
-
     private EditText fullNameEditText; // ⬅ Ad soyad kutusu
 
     // Email ve Şifre giriş kutuları
@@ -90,7 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         });
         loginText.setOnClickListener(v -> {
-            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
             finish();
         });
 

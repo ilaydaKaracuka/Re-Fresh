@@ -1,6 +1,7 @@
 package com.example.re_fresh;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,18 @@ public class WelcomeActivity extends AppCompatActivity {
 
         Button btnLogin = findViewById(R.id.btn_login);
         Button btnRegister = findViewById(R.id.btn_register);
+
+        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        boolean isLoggedIn = prefs.getBoolean("is_logged_in", false);
+
+        if (isLoggedIn) {
+            // Kullanıcı zaten giriş yapmış → Welcome'ı atla, MainActivity'e git
+            Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

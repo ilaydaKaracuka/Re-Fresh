@@ -1,6 +1,7 @@
 package com.example.re_fresh;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,13 +31,35 @@ public class OnboardingActivity extends AppCompatActivity {
         skipButton = findViewById(R.id.skipButton);
         nextButton = findViewById(R.id.nextButton);
 
+//        skipButton.setOnClickListener(v -> goToWelcome());
+//        nextButton.setOnClickListener(v -> {
+//            currentPage++;
+//            updateContent();
+//        });
+//
+//        updateContent();
+
+        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        boolean isFirstTime = prefs.getBoolean("first_time", true);
+
+
         skipButton.setOnClickListener(v -> goToWelcome());
+
         nextButton.setOnClickListener(v -> {
             currentPage++;
-            updateContent();
+            if (currentPage > 2) {
+                goToWelcome(); // sharedPreferences burada da yazılıyor
+            } else {
+                updateContent();
+            }
         });
 
         updateContent();
+
+
+
+
+
     }
 
     private void updateContent() {
@@ -80,8 +103,21 @@ public class OnboardingActivity extends AppCompatActivity {
         }
     }
 
+//    private void goToWelcome() {
+//        startActivity(new Intent(OnboardingActivity.this, WelcomeActivity.class));
+//        finish();
+//    }
+
     private void goToWelcome() {
+        // Onboarding tamamlandı → shared preferences'e kaydet
+        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("first_time", false);
+        editor.apply();
+
+        // Welcome ekranına geç
         startActivity(new Intent(OnboardingActivity.this, WelcomeActivity.class));
         finish();
     }
+
 }

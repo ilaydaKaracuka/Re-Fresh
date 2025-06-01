@@ -352,7 +352,7 @@
         android:fontFamily="@font/poppins_bold"
 
         android:backgroundTint="@color/main_theme_color"
-        android:text="Kaydet"
+        android:text="Tarihi seçin"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:cornerRadius="8dp"

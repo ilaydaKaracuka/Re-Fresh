@@ -1,9 +1,5 @@
 package com.example.re_fresh;
 
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,28 +8,39 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import android.app.DatePickerDialog;
+import android.widget.DatePicker;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AddProductActivity extends AppCompatActivity {
 
@@ -42,9 +49,7 @@ public class AddProductActivity extends AppCompatActivity {
     private ImageView qrCode, gallery, kamera, urunResim;
     private ActivityResultLauncher<Intent> galleryLauncher, cameraLauncher;
 
-    // CardView kategori butonları (id'ler düzenlendi)
     private CardView cvGida, cvIcecek, cvIlac, cvKozmetik, cvTemizlik, cvDiger;
-
     private String selectedCategory = "";
 
     @Override
@@ -59,12 +64,12 @@ public class AddProductActivity extends AppCompatActivity {
             return insets;
         });
 
+        // View binding
         qrCode = findViewById(R.id.btnQrCode);
         gallery = findViewById(R.id.btnGallery);
         urunResim = findViewById(R.id.imageViewUrunResim);
         kamera = findViewById(R.id.btnKamera);
 
-        // Doğru ID'lerle kategori kartlarını bağla
         cvGida = findViewById(R.id.cvGida);
         cvIcecek = findViewById(R.id.cvIcecek);
         cvIlac = findViewById(R.id.cvIlac);
@@ -72,7 +77,7 @@ public class AddProductActivity extends AppCompatActivity {
         cvTemizlik = findViewById(R.id.cvTemizlik);
         cvDiger = findViewById(R.id.cvDiger);
 
-        // Kartlara tıklanabilirlik ver
+        // Kategori seçimleri
         cvGida.setOnClickListener(v -> selectCategory("Gıda"));
         cvIcecek.setOnClickListener(v -> selectCategory("İçecek"));
         cvIlac.setOnClickListener(v -> selectCategory("İlaç"));
@@ -80,30 +85,27 @@ public class AddProductActivity extends AppCompatActivity {
         cvTemizlik.setOnClickListener(v -> selectCategory("Temizlik"));
         cvDiger.setOnClickListener(v -> selectCategory("Diğer"));
 
+        // Galeri sonucu
         galleryLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                         Uri selectedImageUri = result.getData().getData();
                         urunResim.setImageURI(selectedImageUri);
-                        kamera.setVisibility(View.GONE);
-                        gallery.setVisibility(View.GONE);
-                        qrCode.setVisibility(View.GONE);
+                        hideImageSourceButtons();
                     }
                 }
         );
 
+        // Kamera sonucu
         cameraLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                        Bundle extras = result.getData().getExtras();
-                        if (extras != null) {
-                            Bitmap imageBitmap = (Bitmap) extras.get("data");
+                        Bitmap imageBitmap = (Bitmap) result.getData().getExtras().get("data");
+                        if (imageBitmap != null) {
                             urunResim.setImageBitmap(imageBitmap);
-                            kamera.setVisibility(View.GONE);
-                            gallery.setVisibility(View.GONE);
-                            qrCode.setVisibility(View.GONE);
+                            hideImageSourceButtons();
                         }
                     }
                 }
@@ -126,6 +128,7 @@ public class AddProductActivity extends AppCompatActivity {
         etUrunAdi = findViewById(R.id.etUrunAdi);
         btnKaydet = findViewById(R.id.btnKaydet);
 
+        // btnKaydet listener'ı popup açacak şekilde değiştirdik
         btnKaydet.setOnClickListener(v -> {
             String urunAdi = etUrunAdi.getText().toString().trim();
 
@@ -139,34 +142,7 @@ public class AddProductActivity extends AppCompatActivity {
                 return;
             }
 
-            Toast.makeText(this, "Ürün kaydedildi: " + urunAdi + " - " + selectedCategory, Toast.LENGTH_SHORT).show();
-
-            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-            if (currentUser == null) {
-                Toast.makeText(this, "Kullanıcı oturumu yok", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            String userId = currentUser.getUid();
-
-            // Ürün bilgilerini bir Map içine alıyoruz
-            Map<String, Object> productData = new HashMap<>();
-            productData.put("urunAdi", urunAdi);
-            productData.put("kategori", selectedCategory);
-            productData.put("timestamp", FieldValue.serverTimestamp());
-
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("users").document(userId)
-                    .collection("products")
-                    .add(productData)
-                    .addOnSuccessListener(documentReference -> {
-                        Toast.makeText(this, "Ürün kaydedildi", Toast.LENGTH_SHORT).show();
-                        etUrunAdi.setText("");
-                        selectCategory(""); // Seçimi sıfırla
-                    })
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(this, "Kayıt başarısız: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    });
+            showExpiryInputDialog(urunAdi, selectedCategory);
         });
     }
 
@@ -184,7 +160,12 @@ public class AddProductActivity extends AppCompatActivity {
         galleryLauncher.launch(pickPhoto);
     }
 
-    // Seçilen kategoriyi tut ve kartlara arka plan rengi uygula
+    private void hideImageSourceButtons() {
+        kamera.setVisibility(View.GONE);
+        gallery.setVisibility(View.GONE);
+        qrCode.setVisibility(View.GONE);
+    }
+
     private void selectCategory(String category) {
         selectedCategory = category;
 
@@ -197,5 +178,95 @@ public class AddProductActivity extends AppCompatActivity {
         cvKozmetik.setCardBackgroundColor(category.equals("Kozmetik") ? selectedColor : defaultColor);
         cvTemizlik.setCardBackgroundColor(category.equals("Temizlik") ? selectedColor : defaultColor);
         cvDiger.setCardBackgroundColor(category.equals("Diğer") ? selectedColor : defaultColor);
+    }
+
+    // Tarih popup'u gösteren method
+    private void showExpiryInputDialog(String urunAdi, String kategori) {
+        View dialogView = getLayoutInflater().inflate(R.layout.manual_expiry_input, null);
+
+        EditText expiryInput = dialogView.findViewById(R.id.expiryInput);
+        Button btnSaveExpiry = dialogView.findViewById(R.id.btn_save_expiry);
+
+        // Tarih seçici açılması için listener ekliyoruz
+        expiryInput.setOnClickListener(v -> {
+            // Bugünün tarihi ile başlat
+            final Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year1, month1, dayOfMonth) -> {
+                // Aylar 0-11 olduğu için +1 yapıyoruz
+                String formattedDate = String.format("%02d/%02d/%04d", dayOfMonth, month1 + 1, year1);
+                expiryInput.setText(formattedDate);
+            }, year, month, day);
+
+            datePickerDialog.show();
+        });
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .create();
+
+        btnSaveExpiry.setOnClickListener(v -> {
+            String expiryDate = expiryInput.getText().toString().trim();
+
+            if (expiryDate.isEmpty()) {
+                Toast.makeText(this, "Lütfen son kullanma tarihi girin", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            saveProductToFirestore(urunAdi, kategori, expiryDate);
+            dialog.dismiss();
+        });
+
+        dialog.show();
+    }
+
+
+    // Firestore'a tarih ile beraber ürün kaydeden method
+    private void saveProductToFirestore(String urunAdi, String kategori, String expiryDateString) {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            Toast.makeText(this, "Kullanıcı oturumu yok", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String userId = currentUser.getUid();
+
+        // String tarihi Date'e çeviriyoruz
+        Date expiryDate;
+        try {
+            expiryDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(expiryDateString);
+        } catch (ParseException e) {
+            Toast.makeText(this, "Tarih biçimi hatalı", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Map<String, Object> productData = new HashMap<>();
+        productData.put("urunAdi", urunAdi);
+        productData.put("kategori", kategori);
+        productData.put("expiryDate", expiryDate);  // Artık Date nesnesi
+        productData.put("timestamp", FieldValue.serverTimestamp());
+
+        FirebaseFirestore.getInstance()
+                .collection("users")
+                .document(userId)
+                .collection("products")
+                .add(productData)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(this, "Ürün ve tarih kaydedildi", Toast.LENGTH_SHORT).show();
+
+                    // Alanları temizle
+                    etUrunAdi.setText("");
+                    selectCategory("");
+                    urunResim.setImageDrawable(null);
+                    kamera.setVisibility(View.VISIBLE);
+                    gallery.setVisibility(View.VISIBLE);
+                    qrCode.setVisibility(View.VISIBLE);
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Kayıt başarısız: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                );
     }
 }

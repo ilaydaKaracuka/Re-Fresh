@@ -3,6 +3,8 @@ package com.example.re_fresh;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +15,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProfileActivity extends AppCompatActivity {
+
+    private TextView userNameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +29,27 @@ public class ProfileActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile);
 
-        // Sistem çubuğu içeriğine göre padding ayarla
+        // Sistem çubuğu padding
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Bottom Navigation ayarları
+        // Kullanıcı adını göster
+        userNameTextView = findViewById(R.id.text_user_name);
+        showAuthenticatedUserName();
+
+        // İlk açılışta WasteFragment'i fragment_container'a koy
+        if (savedInstanceState == null) {
+            WasteFragment fragment = new WasteFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+        }
+
+        // Bottom Navigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_profile_activity);
         bottomNavigationView.getMenu().setGroupCheckable(0, true, false);
         bottomNavigationView.setItemIconTintList(null);
@@ -40,32 +60,66 @@ public class ProfileActivity extends AppCompatActivity {
         }
         bottomNavigationView.getMenu().setGroupCheckable(0, true, true);
 
-        // İsraf Bilgisi butonu tıklanınca fragment göster
+        // İsraf Bilgisi butonuna tıklanınca WasteFragment göster
         LinearLayout israfBilgisiBtn = findViewById(R.id.btn_waste_fragment);
-        israfBilgisiBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                WasteFragment fragment = new WasteFragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.fragment_container, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
+        israfBilgisiBtn.setOnClickListener(v -> {
+            WasteFragment fragment = new WasteFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.fragment_container, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         });
 
-        // Ayarlar butonu tıklanınca fragment göster
+        // Ayarlar butonuna tıklanınca SettingsFragment göster
         LinearLayout ayarlarBtn = findViewById(R.id.btn_settings_fragment);
-        ayarlarBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SettingsFragment fragment = new SettingsFragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.fragment_container, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
+        ayarlarBtn.setOnClickListener(v -> {
+            SettingsFragment fragment = new SettingsFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.fragment_container, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         });
     }
+
+    private void showAuthenticatedUserName() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user != null) {
+            String uid = user.getUid();
+
+            FirebaseFirestore.getInstance().collection("users")
+                    .document(uid)
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            String firstName = documentSnapshot.getString("firstName");
+                            String lastName = documentSnapshot.getString("lastName");
+
+                            if (firstName != null && !firstName.isEmpty()) {
+                                String fullName = firstName;
+                                if (lastName != null && !lastName.isEmpty()) {
+                                    fullName += " " + lastName;
+                                }
+                                userNameTextView.setText(fullName);
+                            } else {
+                                userNameTextView.setText("Ad bilgisi yok");
+                                Log.w("Firestore", "Ad bilgisi boş");
+                            }
+                        } else {
+                            userNameTextView.setText("Kullanıcı bilgisi bulunamadı");
+                            Log.w("Firestore", "Belge yok");
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        userNameTextView.setText("Hata oluştu");
+                        Log.e("Firestore", "Kullanıcı bilgisi alınamadı", e);
+                    });
+        } else {
+            userNameTextView.setText("Kullanıcı yok");
+            Log.e("FirebaseAuth", "Giriş yapan kullanıcı bulunamadı");
+        }
+    }
+
 }

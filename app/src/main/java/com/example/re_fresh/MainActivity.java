@@ -13,13 +13,17 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,22 +79,60 @@ public class MainActivity extends AppCompatActivity {
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     productList.clear();
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
                     for (DocumentSnapshot doc : queryDocumentSnapshots) {
-                        String urunAdi = doc.getString("urunAdi");
-                        String kategori = doc.getString("kategori");
-                        String docId = doc.getId();
+                        try {
+                            String urunAdi = doc.getString("urunAdi");
+                            String kategori = doc.getString("kategori");
+                            Timestamp timestamp = doc.getTimestamp("expiryDate");
+                            Date expiryDate = timestamp != null ? timestamp.toDate() : null;
+                            String docId = doc.getId();
 
-                        // Sabit bilgiler
-                        String gunBilgisi = "22 GÜN";
-                        int resim = R.drawable.product_example;
+                            if (urunAdi == null || kategori == null || expiryDate == null) {
+                                continue; // eksik veri varsa atla
+                            }
 
-                        productList.add(new Product(urunAdi, kategori, gunBilgisi, resim, docId));
+                            int resim = R.drawable.product_example;
+
+                            // Tarihi "dd/MM/yyyy" formatında al
+                            String formattedDate = sdf.format(expiryDate);
+
+                            // Kalan gün sayısını hesapla
+                            String daysLeft = calculateDaysLeft(expiryDate);
+
+                            // Tarih ve kalan gün bilgisini birlikte göster
+                            String displayDate = formattedDate + " (" + daysLeft + ")";
+
+                            productList.add(new Product(urunAdi, kategori, displayDate, resim, docId));
+                        } catch (Exception e) {
+                            Log.e("ProductLoadError", "Hatalı belge: " + e.getMessage(), e);
+                        }
                     }
+
                     adapter.notifyDataSetChanged();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Ürünler alınamadı: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.e("Firestore", "Hata: ", e);
+                    Log.e("FirestoreError", "Veri çekme hatası: ", e);
                 });
     }
+
+    private String calculateDaysLeft(Date expiryDate) {
+        if (expiryDate == null) {
+            return "Tarih yok";
+        }
+
+        Date today = new Date();
+        long diff = expiryDate.getTime() - today.getTime();
+        long daysLeft = diff / (1000 * 60 * 60 * 24);
+
+        if (daysLeft < 0) {
+            return "Süresi doldu";
+        } else {
+            return daysLeft + " gün kaldı";
+        }
+    }
+
 }

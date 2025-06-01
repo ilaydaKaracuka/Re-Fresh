@@ -1,5 +1,6 @@
 package com.example.re_fresh;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -31,10 +32,19 @@ public class MainActivity extends AppCompatActivity {
     private ProductAdapter adapter;
     private List<Product> productList;
     private FirebaseFirestore db;
+    private FirebaseAuth mAuth;  // FirebaseAuth nesnesi eklendi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // FirebaseAuth instance
+        mAuth = FirebaseAuth.getInstance();
+
+
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
@@ -67,8 +77,22 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.getMenu().setGroupCheckable(0, true, true);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser == null) {
+            // Kullanıcı giriş yapmamışsa LoginActivity'ye yönlendir
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();  // MainActivity kapanır
+        }
+    }
+
     private void loadProductsFromFirestore() {
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
             Toast.makeText(this, "Kullanıcı oturumu bulunamadı", Toast.LENGTH_SHORT).show();
             return;
